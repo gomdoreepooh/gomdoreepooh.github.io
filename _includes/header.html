@@ -1,7 +1,25 @@
-<div class="row">
-    <a href="{{ site.baseurl | replace: '//', '/' }}/" class="logo noline">
-        {% include full.html %}
-        {% include logo.html %}
-        {% include icon.html %}
+
+<style>
+.logo {
+	padding:10rem 0;
+	text-align: center;
+}
+.logo a span {
+	font-size: 0.7rem;
+	color: #1f1f1f;
+	text-transform: uppercase;
+}
+.logo a div {
+	padding-top: 0.7rem;
+	font-size: 2.5rem;
+	color: #1f1f1f;
+	font-weight: 800;
+}
+</style>
+
+<div class="logo">
+    <a href="{{ site.baseurl | replace: '//', '/' }}/">
+		<span>welcome to gomdoreepooh's home</span>
+		<div>UI 100 Challenge</div>
     </a>
 </div>
