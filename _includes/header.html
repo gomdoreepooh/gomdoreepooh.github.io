@@ -1,6 +1,7 @@
-<!-- header start -->
-
-{% if site.float_logo %}
-  <a href="{{ site.url }}{{ site.baseurl }}" class="logo-readium"><span class="logo" style="background-image: url({{ site.logo }})"></span></a>
-{% endif %}
-<!-- header end -->
+<div class="row">
+    <a href="{{ site.baseurl | replace: '//', '/' }}/" class="logo noline">
+        {% include full.html %}
+        {% include logo.html %}
+        {% include icon.html %}
+    </a>
+</div>
