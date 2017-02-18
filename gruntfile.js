@@ -67,7 +67,7 @@ module.exports = function (grunt) {
                 options: {
                     sizes: [{
                         width: 450,
-                        height: 253,
+                        height: 300,
                         aspectRatio: false,
                     }]
                 },
@@ -179,8 +179,8 @@ module.exports = function (grunt) {
             },
             pages: {
                 options: {
-                    remote: 'git@github.com:DigitalMindCH/gridster-jekyll-theme.git', // change that
-                    branch: 'gh-pages' // adjust here
+                    remote: 'git@github.com:gomdoreepooh/gomdoreepooh.github.io.git', // change that
+                    branch: 'master' // adjust here
                 }
             }
         },

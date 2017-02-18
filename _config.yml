@@ -1,7 +1,7 @@
 full_rebuild: true
-name: gomdoreepooh
-description: Welcome to gomdoreepooh's home
-destination: public
+name: Gridster
+description: the material experience for jekyll
+destination: jekyllbuild
 url: #place url
 baseurl: #place folder name if site is served in subfolder
 permalink: /:title/
@@ -12,7 +12,7 @@ gems: [jekyll-paginate]
 tag_dir: /tag
 category_dir: /category
 author_dir: /author
-author_title_prefix: 'by '
+author_title_prefix: 'Posted by '
 media_folder: /media/compressed
 author_default_avatar: /profile-pic.jpg
 tumblr: "#"
