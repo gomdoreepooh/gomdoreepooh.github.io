@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>시계열 차트의 Interval Preset</title>
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gomdoreepooh" />
+<meta name="twitter:title" content="시계열 차트의 Interval Preset" />
+<meta name="twitter:description" content="문제의 정의">
+
+<meta name="description" content="문제의 정의">
+
+
+	<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
+
+
+<link rel="icon" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+<link rel="stylesheet" href="/assets/core.css">
+<link rel="canonical" href="/notes/chart-interval-preset">
+<link rel="alternate" type="application/atom+xml" title="GOMDOREEPOOH" href="/feed.xml" />
+
+
+
+   
+
+
+	</head>
+
+	<body>
+
+		<aside class="logo">
+
+	
+
+	<a href="/">
+		<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+	</a>
+	<span class="logo-prompt">홈으로 돌아가기</span>
+
+</aside>
+
+		<main>
+			<article>
+
+	<div class="center">
+		<h1>시계열 차트의 Interval Preset</h1>
+		<!-- <time>November 8, 2016</time> -->
+		<time>2016년 11월 8일</time>
+	</div>
+
+	<div class="divider"></div>
+
+	<h2 id="문제의-정의">문제의 정의</h2>
+
+<p>시계열 차트에는 고민해야 할 요소가 많다. 그 중에서도 하나의 차트에 몇 개의 값을 보여주는게 적절한지 즉, X축에 몇개의 핀을 찍어야 할지를 결정하는 것이 어려운 문제였다. 고려해야 할 경우의 수가 많았기 때문인데, 특히 해상도, Range, Interval 3요소의 조합이 난감했다.</p>
+
+<p>모바일을 위해 반응형 웹으로 만들었는데, 또 시계열 차트에서 변화의 흐름을 잘 볼 수 있도록 PC에서도 가로폭 제한 없는 풀사이즈 차트를 보여주고 있으니, 작게는 320픽셀부터 크게는 5120픽셀까지 차트의 크기가 변한다.</p>
+
+<p>이용자가 선택하는 Range의 범위도 중요하다. 하루를 선택하면 값이 1개, 1년치를 선택하면 값이 365개다. 거기에 간격을 얼마로 하느냐에 따라 x축에 찍을 핀의 갯수는 천차만별로 달라진다. 1년치를 1시간 단위로 본다면?</p>
+
+<p>문제는 이렇게 많은 값을 조회하면 서버도 터지고, 네트워크도 자원을 많이 쓰고, 차트를 그리는 브라우저도 버벅이고, 보는 사람도 알아보기 힘들게 된다는 점이다. 이 모든 문제를 해결하기 위해서는 <strong>적절한 제한</strong>이 필요했다.</p>
+
+<div class="divider"></div>
+
+<h2 id="가설과-기준">가설과 기준</h2>
+
+<p>우선 몇가지 기준(=가정)을 세운 뒤, <a href="https://docs.google.com/spreadsheets/d/1mCL2wrwzprnO1ErTBry6AhSiaUPepAJiu52fOyrbMiE/edit?usp=sharing" target="_blank">엑셀시트</a>를 만들고 X축의 갯수를 계산하면서 가정을 다듬어나갔다. 처음 세운 가정은 이렇다.</p>
+<ul>
+  <li>DateRangePicker에서 1년 이상은 선택하지 못하게 막는다.</li>
+  <li>흐름을 보기 위한 X축의 갯수는 min 20개, max 400개가 적절하다.</li>
+  <li>Interval은 5m, 10m, 15m, 30m, 1h, 2h, 3h, 6h, 12h, 24h로 나눈다.</li>
+  <li>Range에 따라 선택할 수 있는 Interval을 제한한다.</li>
+  <li>Range를 Grouping해서 경우의 수를 세트로 만든다.</li>
+</ul>
+
+<p>조건부서식으로 min값과 max값이 사이가 되면 셀이 초록색으로 변하게 한 뒤, Range가 적절하게 그룹을 만들도록 min과 max값을 변경했다.
+Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 고민을 반복하면서 줄여나갔다.</p>
+
+<ul>
+  <li>Grouping을 고려한 X축의 갯수는 min 22개, max 520개가 적절하다.</li>
+  <li>Interval은 5m, 15m, 30m, 1h, 6h, 12h, 24h로 나눈다.</li>
+</ul>
+
+<p><img src="/assets/interval-preset-excel-1.png" alt="interval-preset-excel-1" /></p>
+
+<div class="divider"></div>
+
+<h2 id="결론과-재구성">결론과 재구성</h2>
+
+<p>최종적으로 아래와 같은 결론을 도출했다. Range는 이용자가 선택한 날짜의 범위이고, Interval은 Range에 따라 제공할 선택가능한 옵션이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Range</th>
+      <th style="text-align: left">Interval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">TYPE A</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">5분, 15분, 30분, 1시간</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TYPE B</td>
+      <td style="text-align: left">2,3,4,5</td>
+      <td style="text-align: left">15분, 30분, 1시간</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TYPE C</td>
+      <td style="text-align: left">6,7,8,9,10</td>
+      <td style="text-align: left">30분, 1시간, 6시간</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TYPE D</td>
+      <td style="text-align: left">11~21</td>
+      <td style="text-align: left">1시간, 6시간, 12시간</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TYPE E</td>
+      <td style="text-align: left">22~130</td>
+      <td style="text-align: left">6시간, 12시간, 1일</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TYPE F</td>
+      <td style="text-align: left">131~260</td>
+      <td style="text-align: left">12시간, 1일</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TYPE G</td>
+      <td style="text-align: left">261~365</td>
+      <td style="text-align: left">1일</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이렇게 하면 아무리 많은 X축을 그리더라도 520개 이하가 되고, 또 반대로 아무리 적은 X축이 그리더라도 22개 이상이 되므로 언제든 적절한 수준의 시계열 차트를 그릴 수 있게 된다. 모든 문제를 해결한 줄 알았지만 실제로 적용했을 때 가정에서 발견하지 못했던 새로운 문제를 찾게 되었다.</p>
+
+<ul>
+  <li>22일 미만을 선택해도 일단위로 날짜를 보고 싶다.</li>
+  <li>적절한 길이를 만드는 것보다 Interval 종류가 많은게 중요하다.</li>
+</ul>
+
+<p><img src="/assets/interval-preset-excel-2.png" alt="interval-preset-excel-2" /></p>
+
+<p>그래서 max의 제한은 유지한 채 min의 제한은 없애는 방식으로 기준을 업데이트했다. 2017년 2월 2일 기준 현재 아임포트 서비스에 적용된 Range Interval Preset이 위와 같다.</p>
+
+<div class="divider"></div>
+
+<h2 id="여전히-해결되지-않은-문제">여전히 해결되지 않은 문제</h2>
+
+<p><strong>Interval에 1개월을 추가</strong>하는 것이 필요하다. 테스트하면서 Range로 1년을 선택하고 Interval을 월로 지정해 월별 변화과정을 보려고 했는데, 지금은 선택할 수 있는 가장 큰 Interval 단위가 1일이어서 조회가 불가능했다. 이 이슈는 릴리즈 일정을 고려해 다음 버전에 추가하기로 결정했다.</p>
+
+
+</article>
+
+<div class="page-navigation">
+	
+    <a class="next" href="/notes/svg-by-css" title="NEXT: CSS로 SVG 제어하기">&lt;&lt;</a>
+		<span> &middot; </span>
+  
+		<a class="home" href="/" title="Back to Homepage">Home</a>
+  
+</div>
+
+		</main>
+
+		<div class="footer">
+  <span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+  <span class="block">&copy; 2017 Gomdoreepooh</span>
+</div>
+
+
+	</body>
+
+</html>

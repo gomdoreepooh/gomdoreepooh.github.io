@@ -129,6 +129,8 @@ ol {
   margin: 40px 0;
   padding-left: 50px;
   li {
+    font-size: 15px;
+    line-height: 1.7rem;
     word-wrap: break-word;
   }
   img {
@@ -176,7 +178,7 @@ pre {
 table {
   width: 100%;
   table-layout: fixed;
-  margin: 45px 0;
+  margin: 35px 0;
   thead {
     background: #f2f2f2;
   }
@@ -187,6 +189,7 @@ table {
   }
   td {
     padding: 4px 0;
+    font-size: 14px;
   }
 }
 iframe {
@@ -434,4 +437,31 @@ section {
     position:relative;
     top:1px;
   }
+}
+
+.logo-list {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  *zoom:1;
+  margin:0 -10px;
+  li {
+    width:25%;
+    float:left;
+    .item {
+      border:1px solid #ddd;
+      height: 50px;
+      margin:10px;
+      text-align:center;
+      border-radius:2px;
+      background-size: 60%;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+    }
+  }
+}
+.logo-list:after {
+  clear:both;
+  display: block;
+  content: '';
 }

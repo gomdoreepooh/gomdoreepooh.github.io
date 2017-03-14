@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>관계사 로고 이미지</title>
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gomdoreepooh" />
+<meta name="twitter:title" content="관계사 로고 이미지" />
+<meta name="twitter:description" content="규칙">
+
+<meta name="description" content="규칙">
+
+
+	<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
+
+
+<link rel="icon" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+<link rel="stylesheet" href="/assets/core.css">
+<link rel="canonical" href="/notes/all-logo-set">
+<link rel="alternate" type="application/atom+xml" title="GOMDOREEPOOH" href="/feed.xml" />
+
+
+
+   
+
+
+	</head>
+
+	<body>
+
+		<aside class="logo">
+
+	
+
+	<a href="/">
+		<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+	</a>
+	<span class="logo-prompt">홈으로 돌아가기</span>
+
+</aside>
+
+		<main>
+			<article>
+
+	<div class="center">
+		<h1>관계사 로고 이미지</h1>
+		<!-- <time>January 7, 2017</time> -->
+		<time>2017년 1월 7일</time>
+	</div>
+
+	<div class="divider"></div>
+
+	<h2 id="규칙">규칙</h2>
+
+<p>아임포트 관계사(카드/은행/통신사)들의 아이콘 세트이다. <a href="https://analytics.iamport.kr/" target="_blank">아임포트 통계분석</a>의 차트 목록을 그리는데 사용하며, React에서 constant.js 파일로 만들어 관리한다. 레퍼런스와 마찬가지로 다양하게 쓸 수 있도록 svg 파일로 만들었는데, 이 과정에서 내가 정한 로고 이미지를 만드는 기본적인 규칙은 다음과 같다.</p>
+
+<ul>
+  <li>패스파인더로 공백영역을 제거한다.</li>
+  <li>개발에서 바로 사용할 수 있도록 아이템명으로 폴더를 만든다.</li>
+  <li>2x1 비율로 맞추되, 필요한 경우 1x1도 추가한다.</li>
+  <li>색상정보가 보존된 경우 color_를 붙인다.</li>
+  <li>향후 컬러테마를 추가한다면 white_나 black_도 확장할 수 있다.</li>
+</ul>
+
+<p><img src="/assets/reference-logo-dir.png" alt="reference-logo-dir" /></p>
+
+<div class="divider"></div>
+
+<h2 id="pg사">PG사</h2>
+
+<script>
+var pg_list = [
+    {name:"KG이니시스", logo:"inicis"},
+    {name:"나이스정보통신", logo:"nice"},
+    {name:"JTNET", logo:"jtnet"},
+    {name:"LG유플러스", logo:"lgu"},
+    {name:"다날", logo:"danal"},
+    {name:"KG모빌리언스", logo:"mobilians"},
+    {name:"카카오페이", logo:"kakao"},
+    {name:"Paypal Express",logo:"paypal"},
+    {name:"페이코", logo:"payco"},
+    {name:"시럽페이", logo:"syrup"},
+    {name:"세틀뱅크", logo:"settlebank"},
+    {name:"KICC", logo:"kicc"},
+]
+</script>
+
+<ul class="logo-list">
+<script>
+for(var i=0; i<pg_list.length; i++){
+  document.write("<li><div class='item' style='background-image:url(/assets/logo/pg/"+pg_list[i].logo+"/color_2x1.svg') /></div></li>")
+}
+</script>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="kr">const</span> <span class="nx">PG_LIST</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"INC"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"KG이니시스"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"inicis"</span><span class="p">},</span>
+    <span class="s2">"NIC"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"나이스정보통신"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"nice"</span><span class="p">},</span>
+    <span class="s2">"JTN"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"JTNET"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"jtnet"</span><span class="p">},</span>
+    <span class="s2">"LGU"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"LG유플러스"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"lgu"</span><span class="p">},</span>
+    <span class="s2">"DNL"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"다날"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"danal"</span><span class="p">},</span>
+    <span class="s2">"MOB"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"KG모빌리언스"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"mobilians"</span><span class="p">},</span>
+    <span class="s2">"KKO"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"카카오페이"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kakao"</span><span class="p">},</span>
+    <span class="s2">"PPL"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"Paypal Express"</span><span class="p">,</span><span class="na">logo</span><span class="p">:</span><span class="s2">"paypal"</span><span class="p">},</span>
+    <span class="s2">"PYC"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"페이코"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"payco"</span><span class="p">},</span>
+    <span class="s2">"SYR"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"시럽페이"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"syrup"</span><span class="p">},</span>
+    <span class="s2">"STB"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"세틀뱅크"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"settlebank"</span><span class="p">},</span>
+    <span class="s2">"KIC"</span><span class="p">:</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"KICC"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kicc"</span><span class="p">},</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="divider"></div>
+
+<h2 id="신용카드">신용카드</h2>
+
+<script>
+var card_list = [
+    {name:"BC카드", logo:"bc"},
+    {name:"광주카드", logo:"kwangjoo"},
+    {name:"삼성카드", logo:"samsung"},
+    {name:"신한카드", logo:"shinhan"},
+    {name:"현대카드", logo:"hyundai"},
+    {name:"롯데카드", logo:"lotte"},
+    {name:"수협카드", logo:"soohyup"},
+    {name:"씨티카드", logo:"citi"},
+    {name:"NH카드", logo:"nh"},
+    {name:"전북카드", logo:"jeonbook"},
+    {name:"제주카드", logo:"jeju"},
+    {name:"하나SK카드", logo:"hanask"},
+    {name:"KB국민카드", logo:"kb"},
+    {name:"우리카드", logo:"woori"},
+    {name:"외환카드", logo:"keb"},
+    {name:"우체국", logo:"post"},
+    {name:"해외", logo:"etc"},
+    {name:"기타", logo:"etc"},
+]
+</script>
+
+<ul class="logo-list">
+<script>
+for(var i=0; i<card_list.length; i++){
+  document.write("<li><div class='item' style='background-image:url(/assets/logo/card/"+card_list[i].logo+"/color_2x1.svg') /></div></li>")
+
+}
+</script>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="kr">const</span> <span class="nx">CARD_LIST</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"361"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"BC카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"bc"</span><span class="p">},</span>
+    <span class="s2">"364"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"광주카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kwangjoo"</span><span class="p">},</span>
+    <span class="s2">"365"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"삼성카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"samsung"</span><span class="p">},</span>
+    <span class="s2">"366"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"신한카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"shinhan"</span><span class="p">},</span>
+    <span class="s2">"367"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"현대카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"hyundai"</span><span class="p">},</span>
+    <span class="s2">"368"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"롯데카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"lotte"</span><span class="p">},</span>
+    <span class="s2">"369"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"수협카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"soohyup"</span><span class="p">},</span>
+    <span class="s2">"370"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"씨티카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"citi"</span><span class="p">},</span>
+    <span class="s2">"371"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"NH카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"nh"</span><span class="p">},</span>
+    <span class="s2">"372"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"전북카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"jeonbook"</span><span class="p">},</span>
+    <span class="s2">"373"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"제주카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"jeju"</span><span class="p">},</span>
+    <span class="s2">"374"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"하나SK카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"hanask"</span><span class="p">},</span>
+    <span class="s2">"381"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"KB국민카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kb"</span><span class="p">},</span>
+    <span class="s2">"041"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"우리카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+    <span class="s2">"044"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"외환카드"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+    <span class="s2">"071"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"우체국"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+    <span class="s2">"071"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"해외"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+    <span class="s2">"null"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"기타"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="divider"></div>
+
+<h2 id="은행">은행</h2>
+
+<script>
+var bank_list = [
+    {name:"기업은행", logo:"ibk"},
+    {name:"국민은행", logo:"kb"},
+    {name:"수협중앙회", logo:"soohyup"},
+    {name:"농협은행", logo:"nh"},
+    {name:"우리은행", logo:"woori"},
+    {name:"SC은행", logo:"sc"},
+    {name:"한국씨티은행", logo:"citi"},
+    {name:"대구은행", logo:"dgb"},
+    {name:"부산은행", logo:"bnk"},
+    {name:"광주은행", logo:"kwangjoo"},
+    {name:"경남은행", logo:"kyungnam"},
+    {name:"우체국", logo:"post"},
+    {name:"KEB하나은행", logo:"keb"},
+    {name:"신한은행", logo:"shinhan"},
+    {name:"지역농축협", logo:"local"},
+    {name:"전북은행", logo:"jeonbook"},
+    {name:"새마을금고 중앙회" ,logo:"mg"},
+    {name:"제주은행", logo:"jeju"},
+    {name:"신협중앙회", logo:"shinhyup"},
+    {name:"기타", logo:"etc"},
+]
+</script>
+
+<ul class="logo-list">
+<script>
+for(var i=0; i<bank_list.length; i++){
+  document.write("<li><div class='item' style='background-image:url(/assets/logo/bank/"+bank_list[i].logo+"/color_2x1.svg') /></div></li>")
+
+}
+</script>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="kr">const</span> <span class="nx">BANK_LIST</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"003"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"기업은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"ibk"</span><span class="p">},</span>
+    <span class="s2">"004"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"국민은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kb"</span><span class="p">},</span>
+    <span class="s2">"007"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"수협중앙회"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"soohyup"</span><span class="p">},</span>
+    <span class="s2">"011"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"농협은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"nh"</span><span class="p">},</span>
+    <span class="s2">"020"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"우리은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"woori"</span><span class="p">},</span>
+    <span class="s2">"023"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"SC은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"sc"</span><span class="p">},</span>
+    <span class="s2">"027"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"한국씨티은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"citi"</span><span class="p">},</span>
+    <span class="s2">"031"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"대구은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"dgb"</span><span class="p">},</span>
+    <span class="s2">"032"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"부산은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"bnk"</span><span class="p">},</span>
+    <span class="s2">"034"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"광주은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kwangjoo"</span><span class="p">},</span>
+    <span class="s2">"039"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"경남은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kyungnam"</span><span class="p">},</span>
+    <span class="s2">"071"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"우체국"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"post"</span><span class="p">},</span>
+    <span class="s2">"081"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"KEB하나은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"keb"</span><span class="p">},</span>
+    <span class="s2">"088"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"신한은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"shinhan"</span><span class="p">},</span>
+    <span class="s2">"012"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"지역농축협"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"local"</span><span class="p">},</span>
+    <span class="s2">"037"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"전북은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"jeonbook"</span><span class="p">},</span>
+    <span class="s2">"045"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"새마을금고중앙회"</span> <span class="p">,</span><span class="na">logo</span><span class="p">:</span><span class="s2">"mg"</span><span class="p">},</span>
+    <span class="s2">"035"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"제주은행"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"jeju"</span><span class="p">},</span>
+    <span class="s2">"048"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"신협중앙회"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"shinhyup"</span><span class="p">},</span>
+    <span class="s2">"null"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"기타"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="divider"></div>
+
+<h2 id="통신사">통신사</h2>
+
+<script>
+var mobile_list = [
+    {name:"KT",logo:"kt"},
+    {name:"SKT",logo:"skt"},
+    {name:"LGT",logo:"lguplus"},
+    {name:"CJH",logo:"cjh"},
+    {name:"ETC",logo:"etc"},
+]
+</script>
+
+<ul class="logo-list">
+<script>
+for(var i=0; i<mobile_list.length; i++){
+  document.write("<li><div class='item' style='background-image:url(/assets/logo/mobile/"+mobile_list[i].logo+"/color_2x1.svg') /></div></li>")
+
+}
+</script>
+</ul>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="kr">const</span> <span class="nx">MOBILE_LIST</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"KT"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"KT"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"kt"</span><span class="p">},</span>
+    <span class="s2">"SKT"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"SKT"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"skt"</span><span class="p">},</span>
+    <span class="s2">"LGT"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"LGT"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"lguplus"</span><span class="p">},</span>
+    <span class="s2">"CJH"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"CJH"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"cjh"</span><span class="p">},</span>
+    <span class="s2">"etc"</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s2">"ETC"</span><span class="p">,</span> <span class="na">logo</span><span class="p">:</span><span class="s2">"etc"</span><span class="p">},</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+
+
+</article>
+
+<div class="page-navigation">
+	
+		<a class="home" href="/" title="Back to Homepage">Home</a>
+  
+		<span> &middot; </span>
+    <a class="prev" href="/notes/ref-logo-set" title="PREV: 레퍼런스 로고 이미지">&gt;&gt;</a>
+  
+</div>
+
+		</main>
+
+		<div class="footer">
+  <span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+  <span class="block">&copy; 2017 Gomdoreepooh</span>
+</div>
+
+
+	</body>
+
+</html>
