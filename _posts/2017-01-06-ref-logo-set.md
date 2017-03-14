@@ -56,7 +56,7 @@ var referenceList = [
 <ul class="logo-list">
 <script>
 for(var i=0; i<referenceList.length; i++){
-  document.write("<li><a href="+referenceList[i].url+" target='_blank' title='"+referenceList[i].name+"'><div class='item' style='background-image:url({{ site.baseurl }}/assets/logo/references/"+referenceList[i].logo+".svg')></div></a></li>")
+  document.write("<li><a href="+referenceList[i].url+" target='_blank' title='"+referenceList[i].name+"'><div class='item' style='background-image:url({{ site.baseurl }}/assets/logo/references/"+referenceList[i].logo+".svg')>1</div></a></li>")
 }
 </script>
 </ul>
