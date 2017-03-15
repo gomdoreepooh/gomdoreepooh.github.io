@@ -34,7 +34,7 @@ updated: 2016-11-04 23:37
 
 #### 3) React 컴포넌트 만들기
 
-React에 SVG 컴포넌트를 만든다. 자세한 방법은 [이전 게시물](/notes/svg2)을 참고하자. 이번에는 정사각형 아이콘을 만들기 때문에 width, height 대신 size로 크기값을 받고, viewBox에 새로 만든 캔버스 사이즈인 0 0 64 64로 입력했다.
+React에 SVG 컴포넌트를 만든다. 자세한 방법은 [이전 게시물](/notes/svg-by-react)을 참고하자. 이번에는 정사각형 아이콘을 만들기 때문에 width, height 대신 size로 크기값을 받고, viewBox에 새로 만든 캔버스 사이즈인 0 0 64 64로 입력했다.
 
 
 ```jsx
