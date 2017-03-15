@@ -17,6 +17,35 @@ updated: 2017-01-04 23:37
 
 <div class="divider"></div>
 
+<style>
+.logo-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  *zoom: 1;
+  margin: 0 -10px;
+}
+.logo-list li {
+  width: 25%;
+  float: left;
+}
+.logo-list li .item {
+  border: 1px solid #ddd;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 2px;
+  background-size: 60%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+.logo-list:after {
+  clear: both;
+  display: block;
+  content: '';
+}
+</style>
+
 ## PG사
 
 <script>

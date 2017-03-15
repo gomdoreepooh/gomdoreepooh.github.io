@@ -53,10 +53,39 @@ var referenceList = [
 ]  
 </script>
 
+<style>
+.logo-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  *zoom: 1;
+  margin: 0 -10px;
+}
+.logo-list li {
+  width: 25%;
+  float: left;
+}
+.logo-list li .item {
+  border: 1px solid #ddd;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 2px;
+  background-size: 60%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+.logo-list:after {
+  clear: both;
+  display: block;
+  content: '';
+}
+</style>
+
 <ul class="logo-list">
 <script>
 for(var i=0; i<referenceList.length; i++){
-  document.write("<li><a href="+referenceList[i].url+" target='_blank' title='"+referenceList[i].name+"'><div class='item' style='background-image:url({{ site.baseurl }}/assets/logo/references/"+referenceList[i].logo+".svg')>1</div></a></li>")
+  document.write("<li><a href="+referenceList[i].url+" target='_blank' title='"+referenceList[i].name+"'><div class='item' style='background-image:url({{ site.baseurl }}/assets/logo/references/"+referenceList[i].logo+".svg')></div></a></li>")
 }
 </script>
 </ul>

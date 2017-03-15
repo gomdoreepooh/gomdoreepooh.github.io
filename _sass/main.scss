@@ -438,30 +438,3 @@ section {
     top:1px;
   }
 }
-
-.logo-list {
-  list-style-type: none;
-  margin:0;
-  padding:0;
-  *zoom:1;
-  margin:0 -10px;
-  li {
-    width:25%;
-    float:left;
-    .item {
-      border:1px solid #ddd;
-      height: 50px;
-      margin:10px;
-      text-align:center;
-      border-radius:2px;
-      background-size: 60%;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-    }
-  }
-}
-.logo-list:after {
-  clear:both;
-  display: block;
-  content: '';
-}
