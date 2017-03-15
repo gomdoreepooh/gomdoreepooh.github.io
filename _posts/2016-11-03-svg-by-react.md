@@ -1,6 +1,6 @@
 ---
 title: React에서 SVG 사용하기
-updated: 2017-01-03 23:37
+updated: 2016-11-03 23:37
 ---
 
 ## 컴파운드 패스
@@ -108,7 +108,7 @@ export class Home extends Component {
 
 <div class="divider"></div>
 
-이상의 내용은 [Icons as React Components](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792#.8tdj1dcop){:target="_blank"}을 재구성한 것으로 보다 자세한 내용은 영어 원문을 참고하기 바란다.
+이상의 내용은 [Icons as React Components](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792#.8tdj1dcop)을 재구성한 것으로 보다 자세한 내용은 영어 원문을 참고하기 바란다.
 
 
 

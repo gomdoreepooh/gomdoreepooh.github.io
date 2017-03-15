@@ -1,19 +1,11 @@
 ---
-title: 관계사 로고 이미지
-updated: 2017-01-04 23:37
+title: 아임포트 관계사 로고 이미지
+updated: 2016-11-17 23:37
 ---
 
-## 규칙
+## 아임포트 관계사
 
-아임포트 관계사(카드/은행/통신사)들의 아이콘 세트이다. [아임포트 통계분석](https://analytics.iamport.kr/){:target="_blank"}의 차트 목록을 그리는데 사용하며, React에서 constant.js 파일로 만들어 관리한다. 레퍼런스와 마찬가지로 다양하게 쓸 수 있도록 svg 파일로 만들었는데, 이 과정에서 내가 정한 로고 이미지를 만드는 기본적인 규칙은 다음과 같다.
-
-* 패스파인더로 공백영역을 제거한다.
-* 개발에서 바로 사용할 수 있도록 아이템명으로 폴더를 만든다.
-* 2x1 비율로 맞추되, 필요한 경우 1x1도 추가한다.
-* 색상정보가 보존된 경우 color_를 붙인다.
-* 향후 컬러테마를 추가한다면 white_나 black_도 확장할 수 있다.
-
-![reference-logo-dir]({{ site.baseurl }}/assets/reference-logo-dir.png)
+아임포트 관계사(카드/은행/통신사)들의 아이콘 세트이다. [아임포트 통계분석](https://analytics.iamport.kr/)의 차트 목록을 그리는데 사용하며, React에서 constant.js 파일로 만들어 관리한다. 레퍼런스와 마찬가지로 다양하게 쓸 수 있도록 svg 파일로 만들었다. 만드는 방법은 [비트맵 이미지를 벡터로 변환하기](/notes/bitmap-to-vector) 게시물에 정리했다.
 
 <div class="divider"></div>
 
@@ -112,7 +104,7 @@ var card_list = [
     {name:"우리카드", logo:"woori"},
     {name:"외환카드", logo:"keb"},
     {name:"우체국", logo:"post"},
-    {name:"해외", logo:"etc"},
+    {name:"해외", logo:"foreign"},
     {name:"기타", logo:"etc"},
 ]
 </script>
@@ -141,10 +133,10 @@ export const CARD_LIST = {
     "373":{name:"제주카드", logo:"jeju"},
     "374":{name:"하나SK카드", logo:"hanask"},
     "381":{name:"KB국민카드", logo:"kb"},
-    "041":{name:"우리카드", logo:"etc"},
-    "044":{name:"외환카드", logo:"etc"},
-    "071":{name:"우체국", logo:"etc"},
-    "071":{name:"해외", logo:"etc"},
+    "041":{name:"우리카드", logo:"woori"},
+    "044":{name:"외환카드", logo:"keb"},
+    "071":{name:"우체국", logo:"post"},
+    "071":{name:"해외", logo:"foreign"},
     "null":{name:"기타", logo:"etc"},
 }
 ```

@@ -1,13 +1,13 @@
 ---
-title: SVG 아이콘 라이브러리 만들기
-updated: 2017-01-04 23:37
+title: 아이콘 라이브러리 만들기
+updated: 2016-11-04 23:37
 ---
 
 ## 아이콘 라이브러리
 
 이번에는 활용도가 높은 "자주 쓰는 웹요소 아이콘 세트"를 React 컴포넌트로 만들어서 쉽게 사용하는 과정을 살펴보자.
 
-물론 웹요소 아이콘 세트는 굳이 이러한 방식으로 만들지 않더라도 더 쉽고 간편하게 쓸 수 있는 대안이 존재한다. [Font Awesome](http://fontawesome.io/cheatsheet/){:target="_blank"}, [ionicons](http://ionicons.com/){:target="_blank"}, [Semantic-UI](http://react.semantic-ui.com/elements/icon){:target="_blank"} 등이 널리 쓰이고 있다.
+물론 웹요소 아이콘 세트는 굳이 이러한 방식으로 만들지 않더라도 더 쉽고 간편하게 쓸 수 있는 대안이 존재한다. [Font Awesome](http://fontawesome.io/cheatsheet/), [ionicons](http://ionicons.com/), [Semantic-UI](http://react.semantic-ui.com/elements/icon) 등이 널리 쓰이고 있다.
 
 그럼에도 불구하고 Custom Set을 만드는 이유는 이미지를 원하는대로 수정할 수 있고, 불필요한 아이콘은 프로젝트에 포함시키지 않음으로써 용량을 줄이는 등의 장점이 있기 때문이다.
 
@@ -16,7 +16,7 @@ updated: 2017-01-04 23:37
 ![svg-compound-path]({{ site.baseurl }}/assets/svg-icon-set.png)
 <span></span>
 
-[The Noun Project](https://thenounproject.com/){:target="_blank"}나 [Flaticon](http://www.flaticon.com/){:target="_blank"}과 같은 사이트에서 SVG 아이콘을 구할 수 있다. 두 사이트 모두 유사한 느낌의 아이콘들을 패키지로 제공하기 때문에 잘 활용하면 통일감 있는 디자인을 만들 수 있다.
+[The Noun Project](https://thenounproject.com/)나 [Flaticon](http://www.flaticon.com/)과 같은 사이트에서 SVG 아이콘을 구할 수 있다. 두 사이트 모두 유사한 느낌의 아이콘들을 패키지로 제공하기 때문에 잘 활용하면 통일감 있는 디자인을 만들 수 있다.
 
 #### 2) SVG 파일로 저장하기
 

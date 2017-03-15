@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4000/notes/all-logo-set</loc>
-    <lastmod>2017-01-07T00:00:00+09:00</lastmod>
+    <loc>/notes/chart-interval-preset</loc>
+    <lastmod>2017-02-02T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/notes/ref-logo-set</loc>
-    <lastmod>2017-01-06T00:00:00+09:00</lastmod>
+    <loc>/notes/iamport-analytics-kenotes</loc>
+    <lastmod>2017-01-15T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/notes/logos</loc>
-    <lastmod>2017-01-05T00:00:00+09:00</lastmod>
+    <loc>/notes/subscribe-cancel-policy</loc>
+    <lastmod>2016-12-15T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/notes/svg-icon-library</loc>
-    <lastmod>2017-01-04T00:00:00+09:00</lastmod>
+    <loc>/notes/all-logo-set</loc>
+    <lastmod>2016-11-17T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/notes/svg-by-react</loc>
-    <lastmod>2017-01-03T00:00:00+09:00</lastmod>
+    <loc>/notes/ref-logo-set</loc>
+    <lastmod>2016-11-16T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/notes/svg-by-css</loc>
-    <lastmod>2017-01-02T00:00:00+09:00</lastmod>
+    <loc>/notes/bitmap-to-vector</loc>
+    <lastmod>2016-11-10T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/notes/chart-interval-preset</loc>
-    <lastmod>2016-11-08T00:00:00+09:00</lastmod>
+    <loc>/notes/svg-icon-library</loc>
+    <lastmod>2016-11-04T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/404</loc>
+    <loc>/notes/svg-by-react</loc>
+    <lastmod>2016-11-03T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/about</loc>
+    <loc>/notes/svg-by-css</loc>
+    <lastmod>2016-11-02T00:00:00+09:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4000/</loc>
+    <loc>/404</loc>
+  </url>
+  <url>
+    <loc>/about</loc>
+  </url>
+  <url>
+    <loc>/</loc>
   </url>
 </urlset>

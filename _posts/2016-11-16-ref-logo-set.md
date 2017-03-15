@@ -1,11 +1,11 @@
 ---
-title: 레퍼런스 로고 이미지
-updated: 2017-01-04 23:37
+title: 아임포트 레퍼런스 로고 이미지
+updated: 2016-11-16 23:37
 ---
 
 ## 아임포트 레퍼런스
 
-[아임포트 홈페이지](http://iamport.kr/pricing){:target="_blank"}에 게재한 아임포트를 사용하는 가맹점들의 로고들이다. 구글 이미지검색에서 비트맵 로고를 찾은 뒤 벡터로 변환하여 svg 파일로 만들고, 배열로 불러와 사용한다. 전체 파일을 다운로드하거나 신규 가맹점을 추가하는 등 일련의 작업은 아임포트 홈페이지 [프로젝트](https://bitbucket.org/siotiamport/iamport-www-new){:target="_blank"}에서 진행할 수 있다.
+[아임포트 홈페이지](http://www.iamport.kr/pricing#reference)에 게재한 아임포트를 사용하는 가맹점들의 로고들이다. 구글 이미지검색에서 비트맵 로고를 찾은 뒤 벡터로 변환하여 svg 파일로 만들고, 배열로 불러와 사용한다. 전체 파일을 다운로드하거나 신규 가맹점을 추가하는 등 일련의 작업은 아임포트 홈페이지 [프로젝트](https://bitbucket.org/siotiamport/iamport-www-new)에서 진행할 수 있다.
 
 <script>
 var referenceList = [

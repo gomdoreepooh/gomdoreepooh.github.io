@@ -1,6 +1,6 @@
 ---
 title: 시계열 차트의 Interval Preset
-updated: 2016-11-08 19:30:12
+updated: 2017-02-02 19:30:12
 ---
 
 ## 문제의 정의
@@ -17,7 +17,7 @@ updated: 2016-11-08 19:30:12
 
 ## 가설과 기준
 
-우선 몇가지 기준(=가정)을 세운 뒤, [엑셀시트](https://docs.google.com/spreadsheets/d/1mCL2wrwzprnO1ErTBry6AhSiaUPepAJiu52fOyrbMiE/edit?usp=sharing){:target="_blank"}를 만들고 X축의 갯수를 계산하면서 가정을 다듬어나갔다. 처음 세운 가정은 이렇다.
+우선 몇가지 기준(=가정)을 세운 뒤, [엑셀시트](https://docs.google.com/spreadsheets/d/1mCL2wrwzprnO1ErTBry6AhSiaUPepAJiu52fOyrbMiE/edit?usp=sharing)를 만들고 X축의 갯수를 계산하면서 가정을 다듬어나갔다. 처음 세운 가정은 이렇다.
 * DateRangePicker에서 1년 이상은 선택하지 못하게 막는다.
 * 흐름을 보기 위한 X축의 갯수는 min 20개, max 400개가 적절하다.
 * Interval은 5m, 10m, 15m, 30m, 1h, 2h, 3h, 6h, 12h, 24h로 나눈다.
