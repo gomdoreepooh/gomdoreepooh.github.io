@@ -2,68 +2,55 @@
 <html lang="en">
 
 	<head>
+		
 		<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>React에서 SVG 사용하기</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="React에서 SVG 사용하기" />
+		<meta name="twitter:description" content="컴파운드 패스">
+		<meta name="description" content="컴파운드 패스">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
 
-
-	<title>React에서 SVG 사용하기</title>
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@gomdoreepooh" />
-<meta name="twitter:title" content="React에서 SVG 사용하기" />
-<meta name="twitter:description" content="컴파운드 패스">
-
-<meta name="description" content="컴파운드 패스">
-
-
-	<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
-
-
-<link rel="icon" href="/assets/favicon.png">
-<link rel="apple-touch-icon" href="/assets/touch-icon.png">
-<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-<link rel="stylesheet" href="/assets/core.css">
-<link rel="canonical" href="/notes/svg-by-react">
-<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
-
-
-
-   
-
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/notes/svg-by-react">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
 
 	</head>
 
 	<body>
-
+		
 		<aside class="logo">
-
-	
-
-	<a href="/">
-		<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
-	</a>
-	<span class="logo-prompt">홈으로 돌아가기</span>
-
-</aside>
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
 
 		<main>
-			<article>
 
-	<div class="center">
-		<h1>React에서 SVG 사용하기</h1>
-		<!-- <time>November 3, 2016</time> -->
-		<time>2016년 11월 3일</time>
-	</div>
+<!-- 콘텐츠 시작 -->
+<article>
 
-	<div class="divider"></div>
+<div class="center">
+	<h1>React에서 SVG 사용하기</h1>
+	<time>2016년 11월 3일</time>
+</div>
 
-	<h2 id="컴파운드-패스">컴파운드 패스</h2>
+<div class="divider"></div>
+
+<h2 id="컴파운드-패스">컴파운드 패스</h2>
 
 <p>React에 들어가기 전 Illustrator의 Compound Path 기능을 이용해 SVG의 그래픽 요소들을 통합해보자. 아래 Iamport 로고를 코드 에디터로 열어서 보면 8개의 그래픽 요소로 이루어진 것을 확인할 수 있다.</p>
 <div class="logo-example">
-	<img src="/assets/iamport-logo.svg" />
+	<img src="/assets/img/svg-by-react/iamport-logo.svg" />
 </div>
 
 <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
@@ -85,7 +72,7 @@
 </div>
 <p>Illustrator에서 이 로고파일을 연 다음 cmd+A로 모든 오브젝트를 선택한 뒤, 오브젝트 &gt; 컴파운드패스 &gt; 만들기로 컴파운드패스를 만든다.</p>
 
-<p><img src="/assets/svg-compound-path.png" alt="svg-compound-path" /></p>
+<p><img src="/assets/img/svg-by-react/svg-compound-path.png" alt="svg-compound-path" /></p>
 
 <p>컴파운드패스를 만들고 저장하면 SVG 코드가 아래와 같이 변경된다. 이전에 8개로 나눠져있던 그래픽요소가 하나로 합쳐져 있는 것을 발견할 수 있다.</p>
 <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
@@ -156,7 +143,7 @@ export class Home extends Component {
 </code></pre>
 <p>이미지가 정상적으로 보이는 것을 확인할 수 있다. 이제 이미지가 필요한 곳마다 컴포넌트를 import하여 쉽게 이미지를 추가할 수 있다.</p>
 <div class="logo-example">
-	<img src="/assets/iamport-logo.svg" />
+	<img src="/assets/img/svg-by-react/iamport-logo.svg" />
 </div>
 
 <div class="divider"></div>
@@ -164,28 +151,23 @@ export class Home extends Component {
 <p>이상의 내용은 <a href="https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792#.8tdj1dcop">Icons as React Components</a>을 재구성한 것으로 보다 자세한 내용은 영어 원문을 참고하기 바란다.</p>
 
 
-
 </article>
+<!-- 콘텐츠 종료 -->
 
-<div class="page-navigation">
-	
-    <a class="next" href="/notes/svg-icon-library" title="NEXT: 아이콘 라이브러리 만들기">&lt;&lt;</a>
-		<span> &middot; </span>
-  
-		<a class="home" href="/" title="Back to Homepage">Home</a>
-  
-		<span> &middot; </span>
-    <a class="prev" href="/notes/svg-by-css" title="PREV: CSS로 SVG 제어하기">&gt;&gt;</a>
-  
-</div>
+		<div class="page-navigation">
+			<a class="next" href="/notes/svg-icon-library" title="NEXT: 아이콘 라이브러리 만들기">&lt;&lt;</a>
+			<span> &middot; </span>
+			<a class="home" href="/" title="Back to Homepage">Home</a>
+			<span> &middot; </span>
+		    <a class="prev" href="/notes/svg-by-css" title="PREV: CSS로 SVG 제어하기">&gt;&gt;</a>
+		</div>
 
 		</main>
 
 		<div class="footer">
-  <span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
-  <span class="block">&copy; 2017 Gomdoreepooh</span>
-</div>
-
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
 
 	</body>
 

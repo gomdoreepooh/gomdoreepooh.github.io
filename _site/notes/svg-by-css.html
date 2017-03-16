@@ -2,64 +2,51 @@
 <html lang="en">
 
 	<head>
+		
 		<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>CSS로 SVG 제어하기</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="CSS로 SVG 제어하기" />
+		<meta name="twitter:description" content="장점">
+		<meta name="description" content="장점">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
 
-
-	<title>CSS로 SVG 제어하기</title>
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@gomdoreepooh" />
-<meta name="twitter:title" content="CSS로 SVG 제어하기" />
-<meta name="twitter:description" content="장점">
-
-<meta name="description" content="장점">
-
-
-	<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
-
-
-<link rel="icon" href="/assets/favicon.png">
-<link rel="apple-touch-icon" href="/assets/touch-icon.png">
-<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-<link rel="stylesheet" href="/assets/core.css">
-<link rel="canonical" href="/notes/svg-by-css">
-<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
-
-
-
-   
-
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/notes/svg-by-css">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
 
 	</head>
 
 	<body>
-
+		
 		<aside class="logo">
-
-	
-
-	<a href="/">
-		<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
-	</a>
-	<span class="logo-prompt">홈으로 돌아가기</span>
-
-</aside>
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
 
 		<main>
-			<article>
 
-	<div class="center">
-		<h1>CSS로 SVG 제어하기</h1>
-		<!-- <time>November 2, 2016</time> -->
-		<time>2016년 11월 2일</time>
-	</div>
+<!-- 콘텐츠 시작 -->
+<article>
 
-	<div class="divider"></div>
+<div class="center">
+	<h1>CSS로 SVG 제어하기</h1>
+	<time>2016년 11월 2일</time>
+</div>
 
-	<h2 id="장점">장점</h2>
+<div class="divider"></div>
+
+<h2 id="장점">장점</h2>
 
 <p><a href="https://spoqa.github.io/2012/06/13/bitmap-vector.html">벡터와 비트맵의 차이</a>에서 언급하듯이 벡터는 장점이 많은 이미지 형식이다. 여기에 덧붙이자면 간단한 이미지의 경우 비트맵보다 훨씬 가볍고, CSS로 이미지를 쉽게 제어할 수 있으며, 심지어 객체로 만들어 코드 내에서 편하게 관리할 수도 있다.</p>
 
@@ -81,7 +68,7 @@
 <p>Illustrator에서 로고 이미지를 만들고 SVG로 저장했다.</p>
 
 <div class="logo-example">
-	<img src="/assets/iamport-logo.svg" />
+	<img src="/assets/img/svg-by-css/iamport-logo.svg" />
 </div>
 
 <p>이 파일을 코드 에디터에서 열어보면 아래와 같은 코드로 구성되어 있는 것을 볼 수 있다. XML 문서의 구조와 동일하며, svg 요소 내부에는 도형을 그리는 그래픽 요소와 이를 감싸는 컨테이너 요소로 채워져 있다. <a href="http://mm.sookmyung.ac.kr/~sblim/lec/svg-smil02/svg02-03.htm">자세히</a></p>
@@ -132,7 +119,7 @@
 </div>
 <p>흰색으로 바뀐 로고가 잘 보이도록 바깥 영역을 어둡게 하면 아래와 같은 결과를 볼 수 있다. 참고로 CSS 선택자를 적절히 활용하면 위에서 진행한 것처럼 그래픽 요소마다 클래스명을 주지 않고도 다양한 효과를 줄 수 있다.</p>
 <div class="logo-example dk">
-	<img src="/assets/iamport-logo-lt.svg" />
+	<img src="/assets/img/svg-by-css/iamport-logo-lt.svg" />
 </div>
 <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="c">&lt;!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --&gt;</span>
@@ -159,25 +146,21 @@
 
 <div class="divider"></div>
 
-
 </article>
+<!-- 콘텐츠 종료 -->
 
-<div class="page-navigation">
-	
-    <a class="next" href="/notes/svg-by-react" title="NEXT: React에서 SVG 사용하기">&lt;&lt;</a>
-		<span> &middot; </span>
-  
-		<a class="home" href="/" title="Back to Homepage">Home</a>
-  
-</div>
+		<div class="page-navigation">
+			<a class="next" href="/notes/svg-by-react" title="NEXT: React에서 SVG 사용하기">&lt;&lt;</a>
+			<span> &middot; </span>
+			<a class="home" href="/" title="Back to Homepage">Home</a>
+		</div>
 
 		</main>
 
 		<div class="footer">
-  <span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
-  <span class="block">&copy; 2017 Gomdoreepooh</span>
-</div>
-
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
 
 	</body>
 

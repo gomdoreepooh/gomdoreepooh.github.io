@@ -13,14 +13,14 @@ updated: 2016-11-04 23:37
 
 #### 1) SVG 아이콘 파일 구하기
 
-![svg-compound-path]({{ site.baseurl }}/assets/svg-icon-set.png)
+![svg-compound-path]({{ site.baseurl }}/assets/img/svg-icon-library/svg-icon-set.png)
 <span></span>
 
 [The Noun Project](https://thenounproject.com/)나 [Flaticon](http://www.flaticon.com/)과 같은 사이트에서 SVG 아이콘을 구할 수 있다. 두 사이트 모두 유사한 느낌의 아이콘들을 패키지로 제공하기 때문에 잘 활용하면 통일감 있는 디자인을 만들 수 있다.
 
 #### 2) SVG 파일로 저장하기
 
-![svg-compound-path]({{ site.baseurl }}/assets/svg-illust-size.png)
+![svg-compound-path]({{ site.baseurl }}/assets/img/svg-icon-library/svg-illust-size.png)
 <span></span>
 
 다운로드 받은 파일 중 실제 사용할 아이콘 영역을 복사한 뒤 64px * 64px의 새로운 문서에 붙여넣는다. 그리고 오브젝트의 가로세로 중 큰 쪽을 64px로 지정하여 오브젝트가 캔버스에 가득 차게 사이즈를 조정하고 정렬도구로 캔버스의 한가운데에 위치하게 만든다.
@@ -29,7 +29,7 @@ updated: 2016-11-04 23:37
 
 또한 SVG파일로 저장하기 전 Compound Path를 만드는 과정도 진행한다.
 
-![svg-compound-path]({{ site.baseurl }}/assets/svg-compound-path.png)
+![svg-compound-path]({{ site.baseurl }}/assets/img/svg-icon-library/svg-compound-path.png)
 <span></span>
 
 #### 3) React 컴포넌트 만들기
@@ -112,7 +112,7 @@ export class Home extends Component {
 <div class="like-example">
 	<div class="like-button" onclick="buttonClick()">
 		<div class="inner-button">
-			<img src="{{ site.baseurl }}/assets/heart.svg" />
+			<img src="{{ site.baseurl }}/assets/img/svg-icon-library/heart.svg" />
 			<input type="text" id="inc" value="100" disabled='disabled' />
 		</div>
 	</div>

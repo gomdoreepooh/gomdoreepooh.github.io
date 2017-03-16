@@ -30,7 +30,7 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
 * Grouping을 고려한 X축의 갯수는 min 22개, max 520개가 적절하다.
 * Interval은 5m, 15m, 30m, 1h, 6h, 12h, 24h로 나눈다.
 
-![interval-preset-excel-1]({{ site.baseurl }}/assets/interval-preset-excel-1.png)
+![interval-preset-excel-1]({{ site.baseurl }}/assets/img/chart-interval-preset/interval-preset-excel-1.png)
 
 <div class="divider"></div>
 
@@ -53,7 +53,7 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
 * 22일 미만을 선택해도 일단위로 날짜를 보고 싶다.
 * 적절한 길이를 만드는 것보다 Interval 종류가 많은게 중요하다.
 
-![interval-preset-excel-2]({{ site.baseurl }}/assets/interval-preset-excel-2.png)
+![interval-preset-excel-2]({{ site.baseurl }}/assets/img/chart-interval-preset/interval-preset-excel-2.png)
 
 그래서 max의 제한은 유지한 채 min의 제한은 없애는 방식으로 기준을 업데이트했다. 2017년 2월 2일 기준 현재 아임포트 서비스에 적용된 Range Interval Preset이 위와 같다.
 

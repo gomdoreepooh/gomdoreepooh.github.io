@@ -2,64 +2,51 @@
 <html lang="en">
 
 	<head>
+		
 		<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>시계열 차트의 Interval Preset</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="시계열 차트의 Interval Preset" />
+		<meta name="twitter:description" content="문제의 정의">
+		<meta name="description" content="문제의 정의">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
 
-
-	<title>시계열 차트의 Interval Preset</title>
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@gomdoreepooh" />
-<meta name="twitter:title" content="시계열 차트의 Interval Preset" />
-<meta name="twitter:description" content="문제의 정의">
-
-<meta name="description" content="문제의 정의">
-
-
-	<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
-
-
-<link rel="icon" href="/assets/favicon.png">
-<link rel="apple-touch-icon" href="/assets/touch-icon.png">
-<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-<link rel="stylesheet" href="/assets/core.css">
-<link rel="canonical" href="/notes/chart-interval-preset">
-<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
-
-
-
-   
-
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/notes/chart-interval-preset">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
 
 	</head>
 
 	<body>
-
+		
 		<aside class="logo">
-
-	
-
-	<a href="/">
-		<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
-	</a>
-	<span class="logo-prompt">홈으로 돌아가기</span>
-
-</aside>
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
 
 		<main>
-			<article>
 
-	<div class="center">
-		<h1>시계열 차트의 Interval Preset</h1>
-		<!-- <time>February 2, 2017</time> -->
-		<time>2017년 2월 2일</time>
-	</div>
+<!-- 콘텐츠 시작 -->
+<article>
 
-	<div class="divider"></div>
+<div class="center">
+	<h1>시계열 차트의 Interval Preset</h1>
+	<time>2017년 2월 2일</time>
+</div>
 
-	<h2 id="문제의-정의">문제의 정의</h2>
+<div class="divider"></div>
+
+<h2 id="문제의-정의">문제의 정의</h2>
 
 <p>시계열 차트에는 고민해야 할 요소가 많다. 그 중에서도 하나의 차트에 몇 개의 값을 보여주는게 적절한지 즉, X축에 몇개의 핀을 찍어야 할지를 결정하는 것이 어려운 문제였다. 고려해야 할 경우의 수가 많았기 때문인데, 특히 해상도, Range, Interval 3요소의 조합이 난감했다.</p>
 
@@ -90,7 +77,7 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
   <li>Interval은 5m, 15m, 30m, 1h, 6h, 12h, 24h로 나눈다.</li>
 </ul>
 
-<p><img src="/assets/interval-preset-excel-1.png" alt="interval-preset-excel-1" /></p>
+<p><img src="/assets/img/chart-interval-preset/interval-preset-excel-1.png" alt="interval-preset-excel-1" /></p>
 
 <div class="divider"></div>
 
@@ -152,7 +139,7 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
   <li>적절한 길이를 만드는 것보다 Interval 종류가 많은게 중요하다.</li>
 </ul>
 
-<p><img src="/assets/interval-preset-excel-2.png" alt="interval-preset-excel-2" /></p>
+<p><img src="/assets/img/chart-interval-preset/interval-preset-excel-2.png" alt="interval-preset-excel-2" /></p>
 
 <p>그래서 max의 제한은 유지한 채 min의 제한은 없애는 방식으로 기준을 업데이트했다. 2017년 2월 2일 기준 현재 아임포트 서비스에 적용된 Range Interval Preset이 위와 같다.</p>
 
@@ -162,25 +149,21 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
 
 <p><strong>Interval에 1개월을 추가</strong>하는 것이 필요하다. 테스트하면서 Range로 1년을 선택하고 Interval을 월로 지정해 월별 변화과정을 보려고 했는데, 지금은 선택할 수 있는 가장 큰 Interval 단위가 1일이어서 조회가 불가능했다. 이 이슈는 릴리즈 일정을 고려해 다음 버전에 추가하기로 결정했다.</p>
 
-
 </article>
+<!-- 콘텐츠 종료 -->
 
-<div class="page-navigation">
-	
-		<a class="home" href="/" title="Back to Homepage">Home</a>
-  
-		<span> &middot; </span>
-    <a class="prev" href="/notes/iamport-analytics-kenotes" title="PREV: 서비스 소개서 키노트">&gt;&gt;</a>
-  
-</div>
+		<div class="page-navigation">
+			<a class="home" href="/" title="Back to Homepage">Home</a>
+			<span> &middot; </span>
+		    <a class="prev" href="/notes/iamport-analytics-kenotes" title="PREV: 서비스 소개서 키노트">&gt;&gt;</a>
+		</div>
 
 		</main>
 
 		<div class="footer">
-  <span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
-  <span class="block">&copy; 2017 Gomdoreepooh</span>
-</div>
-
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
 
 	</body>
 

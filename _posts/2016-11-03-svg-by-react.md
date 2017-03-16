@@ -7,7 +7,7 @@ updated: 2016-11-03 23:37
 
 React에 들어가기 전 Illustrator의 Compound Path 기능을 이용해 SVG의 그래픽 요소들을 통합해보자. 아래 Iamport 로고를 코드 에디터로 열어서 보면 8개의 그래픽 요소로 이루어진 것을 확인할 수 있다.
 <div class="logo-example">
-	<img src="{{ site.baseurl }}/assets/iamport-logo.svg" />
+	<img src="{{ site.baseurl }}/assets/img/svg-by-react/iamport-logo.svg" />
 </div>
 
 ```xml
@@ -29,7 +29,7 @@ React에 들어가기 전 Illustrator의 Compound Path 기능을 이용해 SVG�
 ```
 Illustrator에서 이 로고파일을 연 다음 cmd+A로 모든 오브젝트를 선택한 뒤, 오브젝트 > 컴파운드패스 > 만들기로 컴파운드패스를 만든다.
 
-![svg-compound-path]({{ site.baseurl }}/assets/svg-compound-path.png)
+![svg-compound-path]({{ site.baseurl }}/assets/img/svg-by-react/svg-compound-path.png)
 
 컴파운드패스를 만들고 저장하면 SVG 코드가 아래와 같이 변경된다. 이전에 8개로 나눠져있던 그래픽요소가 하나로 합쳐져 있는 것을 발견할 수 있다.
 ```xml
@@ -103,7 +103,7 @@ export class Home extends Component {
 ```
 이미지가 정상적으로 보이는 것을 확인할 수 있다. 이제 이미지가 필요한 곳마다 컴포넌트를 import하여 쉽게 이미지를 추가할 수 있다.
 <div class="logo-example">
-	<img src="{{ site.baseurl }}/assets/iamport-logo.svg" />
+	<img src="{{ site.baseurl }}/assets/img/svg-by-react/iamport-logo.svg" />
 </div>
 
 <div class="divider"></div>

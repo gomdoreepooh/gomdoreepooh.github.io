@@ -2,64 +2,51 @@
 <html lang="en">
 
 	<head>
+		
 		<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>아이콘 라이브러리 만들기</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="아이콘 라이브러리 만들기" />
+		<meta name="twitter:description" content="아이콘 라이브러리">
+		<meta name="description" content="아이콘 라이브러리">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
 
-
-	<title>아이콘 라이브러리 만들기</title>
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@gomdoreepooh" />
-<meta name="twitter:title" content="아이콘 라이브러리 만들기" />
-<meta name="twitter:description" content="아이콘 라이브러리">
-
-<meta name="description" content="아이콘 라이브러리">
-
-
-	<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
-
-
-<link rel="icon" href="/assets/favicon.png">
-<link rel="apple-touch-icon" href="/assets/touch-icon.png">
-<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-<link rel="stylesheet" href="/assets/core.css">
-<link rel="canonical" href="/notes/svg-icon-library">
-<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
-
-
-
-   
-
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/notes/svg-icon-library">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
 
 	</head>
 
 	<body>
-
+		
 		<aside class="logo">
-
-	
-
-	<a href="/">
-		<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
-	</a>
-	<span class="logo-prompt">홈으로 돌아가기</span>
-
-</aside>
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
 
 		<main>
-			<article>
 
-	<div class="center">
-		<h1>아이콘 라이브러리 만들기</h1>
-		<!-- <time>November 4, 2016</time> -->
-		<time>2016년 11월 4일</time>
-	</div>
+<!-- 콘텐츠 시작 -->
+<article>
 
-	<div class="divider"></div>
+<div class="center">
+	<h1>아이콘 라이브러리 만들기</h1>
+	<time>2016년 11월 4일</time>
+</div>
 
-	<h2 id="아이콘-라이브러리">아이콘 라이브러리</h2>
+<div class="divider"></div>
+
+<h2 id="아이콘-라이브러리">아이콘 라이브러리</h2>
 
 <p>이번에는 활용도가 높은 “자주 쓰는 웹요소 아이콘 세트”를 React 컴포넌트로 만들어서 쉽게 사용하는 과정을 살펴보자.</p>
 
@@ -69,14 +56,14 @@
 
 <h4 id="1-svg-아이콘-파일-구하기">1) SVG 아이콘 파일 구하기</h4>
 
-<p><img src="/assets/svg-icon-set.png" alt="svg-compound-path" />
+<p><img src="/assets/img/svg-icon-library/svg-icon-set.png" alt="svg-compound-path" />
 <span></span></p>
 
 <p><a href="https://thenounproject.com/">The Noun Project</a>나 <a href="http://www.flaticon.com/">Flaticon</a>과 같은 사이트에서 SVG 아이콘을 구할 수 있다. 두 사이트 모두 유사한 느낌의 아이콘들을 패키지로 제공하기 때문에 잘 활용하면 통일감 있는 디자인을 만들 수 있다.</p>
 
 <h4 id="2-svg-파일로-저장하기">2) SVG 파일로 저장하기</h4>
 
-<p><img src="/assets/svg-illust-size.png" alt="svg-compound-path" />
+<p><img src="/assets/img/svg-icon-library/svg-illust-size.png" alt="svg-compound-path" />
 <span></span></p>
 
 <p>다운로드 받은 파일 중 실제 사용할 아이콘 영역을 복사한 뒤 64px * 64px의 새로운 문서에 붙여넣는다. 그리고 오브젝트의 가로세로 중 큰 쪽을 64px로 지정하여 오브젝트가 캔버스에 가득 차게 사이즈를 조정하고 정렬도구로 캔버스의 한가운데에 위치하게 만든다.</p>
@@ -85,7 +72,7 @@
 
 <p>또한 SVG파일로 저장하기 전 Compound Path를 만드는 과정도 진행한다.</p>
 
-<p><img src="/assets/svg-compound-path.png" alt="svg-compound-path" />
+<p><img src="/assets/img/svg-icon-library/svg-compound-path.png" alt="svg-compound-path" />
 <span></span></p>
 
 <h4 id="3-react-컴포넌트-만들기">3) React 컴포넌트 만들기</h4>
@@ -166,34 +153,29 @@ export class Home extends Component {
 <div class="like-example">
 	<div class="like-button" onclick="buttonClick()">
 		<div class="inner-button">
-			<img src="/assets/heart.svg" />
+			<img src="/assets/img/svg-icon-library/heart.svg" />
 			<input type="text" id="inc" value="100" disabled="disabled" />
 		</div>
 	</div>
 </div>
 
-
 </article>
+<!-- 콘텐츠 종료 -->
 
-<div class="page-navigation">
-	
-    <a class="next" href="/notes/bitmap-to-vector" title="NEXT: 비트맵 이미지를 벡터로 변환하기">&lt;&lt;</a>
-		<span> &middot; </span>
-  
-		<a class="home" href="/" title="Back to Homepage">Home</a>
-  
-		<span> &middot; </span>
-    <a class="prev" href="/notes/svg-by-react" title="PREV: React에서 SVG 사용하기">&gt;&gt;</a>
-  
-</div>
+		<div class="page-navigation">
+			<a class="next" href="/notes/bitmap-to-vector" title="NEXT: 비트맵 이미지를 벡터로 변환하기">&lt;&lt;</a>
+			<span> &middot; </span>
+			<a class="home" href="/" title="Back to Homepage">Home</a>
+			<span> &middot; </span>
+		    <a class="prev" href="/notes/svg-by-react" title="PREV: React에서 SVG 사용하기">&gt;&gt;</a>
+		</div>
 
 		</main>
 
 		<div class="footer">
-  <span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
-  <span class="block">&copy; 2017 Gomdoreepooh</span>
-</div>
-
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
 
 	</body>
 
