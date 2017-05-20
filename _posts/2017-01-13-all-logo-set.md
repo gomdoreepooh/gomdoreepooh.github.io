@@ -1,6 +1,6 @@
 ---
-title: 아임포트 관계사 로고 이미지
-updated: 2016-11-17 23:37
+title: 카드/은행/통신사/PG 로고 이미지
+updated : 2017-01-13 19:20
 ---
 
 ## 아임포트 관계사
@@ -27,7 +27,7 @@ updated: 2016-11-17 23:37
   margin: 10px;
   text-align: center;
   border-radius: 2px;
-  background-size: 60%;
+  background-size: 50%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
@@ -35,6 +35,16 @@ updated: 2016-11-17 23:37
   clear: both;
   display: block;
   content: '';
+}
+@media (max-width: 480px) {
+  .logo-list li {
+    width: 50%;
+  }
+}
+@media (min-width: 481px) and (max-width: 640px) {
+  .logo-list li .item {
+    background-size: 70%;
+  }
 }
 </style>
 

@@ -12,15 +12,15 @@
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@gomdoreepooh" />
 		<meta name="twitter:title" content="시계열 차트의 Interval Preset" />
-		<meta name="twitter:description" content="문제의 정의">
-		<meta name="description" content="문제의 정의">
+		<meta name="twitter:description" content="곰돌이푸의 대모험">
+		<meta name="description" content="곰돌이푸의 대모험">
 		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
 
 		<link rel="icon" href="/assets/favicon.png">
 		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
 		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 		<link rel="stylesheet" href="/assets/core.css">
-		<link rel="canonical" href="/notes/chart-interval-preset">
+		<link rel="canonical" href="/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%BD%98%ED%85%90%EC%B8%A0/2017-02-08-chart-interval-preset">
 		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
 
 	</head>
@@ -36,17 +36,13 @@
 
 		<main>
 
-<!-- 콘텐츠 시작 -->
 <article>
 
-<div class="center">
-	<h1>시계열 차트의 Interval Preset</h1>
-	<time>2017년 2월 3일</time>
-</div>
+	<h1 class="title">시계열 차트의 Interval Preset</h1>
 
-<div class="divider"></div>
+	<div class="divider"></div>
 
-<h2 id="문제의-정의">문제의 정의</h2>
+	<h2 id="문제의-정의">문제의 정의</h2>
 
 <p>시계열 차트에는 고민해야 할 요소가 많다. 그 중에서도 하나의 차트에 몇 개의 값을 보여주는게 적절한지 즉, X축에 몇개의 핀을 찍어야 할지를 결정하는 것이 어려운 문제였다. 고려해야 할 경우의 수가 많았기 때문인데, 특히 해상도, Range, Interval 3요소의 조합이 난감했다.</p>
 
@@ -132,11 +128,11 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
   </tbody>
 </table>
 
-<p>이렇게 하면 아무리 많은 X축을 그리더라도 520개 이하가 되고, 또 반대로 아무리 적은 X축이 그리더라도 22개 이상이 되므로 언제든 적절한 수준의 시계열 차트를 그릴 수 있게 된다. 이렇게 모든 문제를 해결한 줄 알았지만 실제로 적용했을 때 가정에서 발견하지 못했던 새로운 문제를 찾게 되었다.</p>
+<p>이렇게 하면 아무리 많은 X축을 그리더라도 520개 이하가 되고, 또 반대로 아무리 적은 X축이 그리더라도 22개 이상이 되므로 언제든 적절한 수준의 시계열 차트를 그릴 수 있게 된다. 모든 문제를 해결한 줄 알았지만 실제로 적용했을 때 가정에서 발견하지 못했던 새로운 문제를 찾게 되었다.</p>
 
 <ul>
   <li>22일 미만을 선택해도 일단위로 날짜를 보고 싶다.</li>
-  <li>적절한 길이를 만드는 것보다 Interval 종류가 많은게 더 중요하다.</li>
+  <li>적절한 길이를 만드는 것보다 Interval 종류가 많은게 중요하다.</li>
 </ul>
 
 <p><img src="/assets/img/chart-interval-preset/interval-preset-excel-2.png" alt="interval-preset-excel-2" /></p>
@@ -149,16 +145,12 @@ Interval도 10분이 있는데 15분을 또 줄 필요가 있을까? 와 같은 
 
 <p><strong>Interval에 1개월을 추가</strong>하는 것이 필요하다. 테스트하면서 Range로 1년을 선택하고 Interval을 월로 지정해 월별 변화과정을 보려고 했는데, 지금은 선택할 수 있는 가장 큰 Interval 단위가 1일이어서 조회가 불가능했다. 이 이슈는 릴리즈 일정을 고려해 다음 버전에 추가하기로 결정했다.</p>
 
-</article>
-<!-- 콘텐츠 종료 -->
 
-		<div class="page-navigation">
-			<a class="next" href="/notes/subscribe-cancel-policy" title="NEXT: 구독형 서비스의 취소 정책">&lt;&lt;</a>
-			<span> &middot; </span>
-			<a class="home" href="/" title="Back to Homepage">Home</a>
-			<span> &middot; </span>
-		    <a class="prev" href="/notes/iamport-analytics-keynotes" title="PREV: 서비스 소개서 키노트">&gt;&gt;</a>
-		</div>
+</article>
+
+<div class="page-navigation">
+	<a class="home" href="/" title="Back to Homepage">Home</a>
+</div>
 
 		</main>
 

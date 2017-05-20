@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>Custom Grid 만들기</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="Custom Grid 만들기" />
+		<meta name="twitter:description" content="곰돌이푸의 대모험">
+		<meta name="description" content="곰돌이푸의 대모험">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
+
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%BD%98%ED%85%90%EC%B8%A0/2016-12-28-less-custom-grid">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
+
+	</head>
+
+	<body>
+		
+		<aside class="logo">
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
+
+		<main>
+
+<article>
+
+	<h1 class="title">Custom Grid 만들기</h1>
+
+	<div class="divider"></div>
+
+	<h2 id="개요">개요</h2>
+
+<p>UI Framework 중에서 <a href="http://getbootstrap.com/">Bootstrap</a>과 <a href="https://semantic-ui.com/">Semantic UI</a>를 주로 사용한다. 둘 모두 비슷한 요소들을 갖추고 있기 때문에 하나만 쓰면 충분하다.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> <a href="http://iamport.kr/">아임포트 홈페이지</a>에는 Bootstrap을 썼고, <a href="http://analytics.iamport.kr/">통계분석</a>에는 Semantic UI를 쓴다. 통계분석에서 Semantic UI를 쓰는 건 <a href="http://react.semantic-ui.com/introduction">React에서 더 쉽게</a> 쓸 수 있기 때문이다.</p>
+
+<p>하지만 반응형 웹을 위한 Grid를 그릴 때에는 Semantic UI보다 Bootstrap의 방식이 더 손에 익었기 때문에 그 부분만 떼서 프로젝트에 이식했다. 그리고 4K, 5K와 같은 고해상도 모니터들이 출시되는 추세를 반영해 이에 대응하는 코드도 추가했다.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> 마지막으로 코드를 간결하게 쓸 수 있도록 Less로 정리했다.</p>
+
+<div class="divider"></div>
+
+<h2 id="해상도-분기">해상도 분기</h2>
+
+<p>Less에서 해상도의 Break Point를 아래와 같이 지정한다. <a href="http://getbootstrap.com/css/#grid">Bootstrap의 Grid</a>와 <a href="https://semantic-ui.com/elements/container.html">Semantic UI의 Grid</a> 모두 공통된 Break Point를 가지고 있다. xs부터 xl까지는 <a href="https://v4-alpha.getbootstrap.com/layout/grid/">Bootstrap v4의 Grid</a>와 동일하며, 그 이상은 보편적인 해상도의 이름을 선택했다. 먼저 최소값과 최대값을 아래와 같이 정의했다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@sm-min</span> 	<span class="p">:</span> <span class="m">576px</span><span class="p">;</span>
+<span class="k">@md-min</span> 	<span class="p">:</span> <span class="m">768px</span><span class="p">;</span>
+<span class="k">@lg-min</span> 	<span class="p">:</span> <span class="m">992px</span><span class="p">;</span>
+<span class="k">@xl-min</span> 	<span class="p">:</span> <span class="m">1200px</span><span class="p">;</span>
+<span class="k">@hd-min</span> 	<span class="p">:</span> <span class="m">1600px</span><span class="p">;</span>
+<span class="k">@fhd-min</span> 	<span class="p">:</span> <span class="m">1920px</span><span class="p">;</span>
+<span class="k">@qhd-min</span> 	<span class="p">:</span> <span class="m">2560px</span><span class="p">;</span>
+<span class="k">@uhd-min</span> 	<span class="p">:</span> <span class="m">3840px</span><span class="p">;</span>
+<span class="k">@4k-min</span> 	<span class="p">:</span> <span class="m">4096px</span><span class="p">;</span>
+<span class="k">@5k-min</span> 	<span class="p">:</span> <span class="m">5120px</span><span class="p">;</span>
+
+<span class="k">@xs-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">sm-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@sm-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">md-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@md-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">lg-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@lg-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">xl-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@xl-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">hd-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@hd-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">fhd-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@fhd-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">qhd-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@qhd-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="n">uhd-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@uhd-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="m">4</span><span class="n">k-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+<span class="k">@4k-max</span> 	<span class="p">:</span> <span class="p">(</span><span class="err">@</span><span class="m">5</span><span class="n">k-min</span> <span class="n">-</span> <span class="m">1</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>위에서 정한 범위에 맞춰 아래와 같이 변수를 만든다. -down과 -up은 <a href="https://v4-alpha.getbootstrap.com/layout/responsive-utilities/">Responsive Utilites</a>에 나오는 개념인데, 써보니 유용해서 같이 추가했다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@xs</span><span class="p">:</span> 	<span class="err">~</span><span class="s2">'only screen and (max-width: @{xs-max})'</span><span class="p">;</span>
+<span class="k">@sm</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{sm-min}) and (max-width: @{sm-max})"</span><span class="p">;</span>
+<span class="k">@md</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{md-min}) and (max-width: @{md-max})"</span><span class="p">;</span>
+<span class="k">@lg</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{lg-min}) and (max-width: @{lg-max})"</span><span class="p">;</span>
+<span class="k">@xl</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{xl-min}) and (max-width: @{xl-max})"</span><span class="p">;</span>
+<span class="k">@hd</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{hd-min}) and (max-width: @{hd-max})"</span><span class="p">;</span>
+<span class="k">@fhd</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (min-width: @{fhd-min}) and (max-width: @{fhd-max})"</span><span class="p">;</span>
+<span class="k">@qhd</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (min-width: @{qhd-min}) and (max-width: @{qhd-max})"</span><span class="p">;</span>
+<span class="k">@uhd</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (min-width: @{uhd-min}) and (max-width: @{uhd-max})"</span><span class="p">;</span>
+<span class="k">@4k</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{4k-min}) and (max-width: @{4k-max})"</span><span class="p">;</span>
+<span class="k">@5k</span><span class="p">:</span>    <span class="err">~</span><span class="s1">"only screen and (min-width: @{5k-min})"</span><span class="p">;</span>
+
+<span class="k">@xs-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{xs-max})"</span><span class="p">;</span>
+<span class="k">@sm-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{sm-max})"</span><span class="p">;</span>
+<span class="k">@md-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{md-max})"</span><span class="p">;</span>
+<span class="k">@lg-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{lg-max})"</span><span class="p">;</span>
+<span class="k">@xl-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{xl-max})"</span><span class="p">;</span>
+<span class="k">@hd-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{hd-max})"</span><span class="p">;</span>
+<span class="k">@fhd-down</span><span class="p">:</span>  <span class="err">~</span><span class="s1">"only screen and (max-width: @{fhd-max})"</span><span class="p">;</span>
+<span class="k">@qhd-down</span><span class="p">:</span>  <span class="err">~</span><span class="s1">"only screen and (max-width: @{qhd-max})"</span><span class="p">;</span>
+<span class="k">@uhd-down</span><span class="p">:</span>  <span class="err">~</span><span class="s1">"only screen and (max-width: @{uhd-max})"</span><span class="p">;</span>
+<span class="k">@4k-down</span><span class="p">:</span>   <span class="err">~</span><span class="s1">"only screen and (max-width: @{4k-max})"</span><span class="p">;</span>
+
+<span class="k">@sm-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{sm-min})"</span><span class="p">;</span>
+<span class="k">@md-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{md-min})"</span><span class="p">;</span>
+<span class="k">@lg-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{lg-min})"</span><span class="p">;</span>
+<span class="k">@xl-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{xl-min})"</span><span class="p">;</span>
+<span class="k">@hd-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{hd-min})"</span><span class="p">;</span>
+<span class="k">@fhd-up</span><span class="p">:</span>   	<span class="err">~</span><span class="s1">"only screen and (min-width: @{fhd-min})"</span><span class="p">;</span>
+<span class="k">@qhd-up</span><span class="p">:</span>   	<span class="err">~</span><span class="s1">"only screen and (min-width: @{qhd-min})"</span><span class="p">;</span>
+<span class="k">@uhd-up</span><span class="p">:</span>   	<span class="err">~</span><span class="s1">"only screen and (min-width: @{uhd-min})"</span><span class="p">;</span>
+<span class="k">@4k-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{4k-min})"</span><span class="p">;</span>
+<span class="k">@5k-up</span><span class="p">:</span>    	<span class="err">~</span><span class="s1">"only screen and (min-width: @{5k-min})"</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>이제 Less에서 미디어쿼리를 사용할 때 아래와 같이 간단하게 쓸 수 있다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@media</span> <span class="err">@</span><span class="n">sm-down</span> <span class="p">{</span>
+	<span class="o">//</span> <span class="err">여기에</span> <span class="err">모바일용</span> <span class="err">코드를</span> <span class="err">넣고</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">md-up</span> <span class="p">{</span>
+	<span class="o">//</span> <span class="err">여기에</span> <span class="err">데스크탑용</span> <span class="err">코드를</span> <span class="err">넣는다</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<div class="divider"></div>
+
+<h2 id="마크업">마크업</h2>
+
+<p>만드는 김에 Bootstrap에서 편하게 썼던 클래스들을 몇개 추가해보자. 아래와 같이 만들면 다른 요소에 쉽게 포함시킬 수 있고 마크업에서도 쉽게 사용할 수 있다.</p>
+
+<p>참고로 만약 CSS파일의 용량을 줄이기 위해 Less 안에서는 쓰되, 변환된 CSS에는 제외하고 싶을 경우에는 클래스이름 뒤에 함수처럼 ()를 붙이면 된다. <a href="https://opentutorials.org/course/277/1751">[자세히]</a></p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.text-center</span> <span class="p">{</span><span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">}</span>
+<span class="nc">.text-left</span> <span class="p">{</span><span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">}</span>
+<span class="nc">.text-right</span> <span class="p">{</span><span class="nl">text-align</span><span class="p">:</span> <span class="nb">right</span><span class="p">}</span>
+<span class="nc">.dp-block</span> <span class="p">{</span><span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">}</span>
+<span class="nc">.dp-none</span> <span class="p">{</span><span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">}</span>
+<span class="nc">.hidden</span> <span class="p">{</span><span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;}</span>
+<span class="nc">.visible</span> <span class="p">{</span><span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;}</span>
+</code></pre>
+</div>
+
+<p>이제 별도의 CSS를 작성하지 않고도 마크업에서 해상도에 따라 내용을 보여주거나 숨기는 효과를 쉽게 줄 수 있도록 아래 코드를 추가한다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.visible-xs</span><span class="p">{</span><span class="err">.dp-none;</span><span class="p">}</span>
+<span class="nc">.visible-sm</span><span class="p">{</span><span class="err">.dp-none;</span><span class="p">}</span>
+<span class="nc">.visible-md</span><span class="p">{</span><span class="err">.dp-none;</span><span class="p">}</span>
+<span class="nc">.visible-lg</span><span class="p">{</span><span class="err">.dp-none;</span><span class="p">}</span>
+<span class="nc">.visible-xl</span><span class="p">{</span><span class="err">.dp-none;</span><span class="p">}</span>
+<span class="nc">.hidden-xs</span><span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span>
+<span class="nc">.hidden-sm</span><span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span>
+<span class="nc">.hidden-md</span><span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span>
+<span class="nc">.hidden-lg</span><span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span>
+<span class="nc">.hidden-xl</span><span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">xs</span> <span class="p">{</span> <span class="nc">.visible-xs</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-xs</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">sm</span> <span class="p">{</span> <span class="nc">.visible-sm</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-sm</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">md</span> <span class="p">{</span> <span class="nc">.visible-md</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-md</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">lg</span> <span class="p">{</span> <span class="nc">.visible-lg</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-lg</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">xl</span> <span class="p">{</span> <span class="nc">.visible-xl</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-xl</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">hd</span> <span class="p">{</span> <span class="nc">.visible-hd</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-hd</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">fhd</span> <span class="p">{</span> <span class="nc">.visible-fhd</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-fhd</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">qhd</span> <span class="p">{</span> <span class="nc">.visible-qhd</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-qhd</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">uhd</span> <span class="p">{</span> <span class="nc">.visible-uhd</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-uhd</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="m">4</span><span class="n">k</span> <span class="p">{</span> <span class="nc">.visible-4k</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-4k</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="m">5</span><span class="n">k</span> <span class="p">{</span> <span class="nc">.visible-5k</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-5k</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">sm-up</span> <span class="p">{</span> <span class="nc">.visible-sm-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-sm-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">md-up</span> <span class="p">{</span> <span class="nc">.visible-md-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-md-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">lg-up</span> <span class="p">{</span> <span class="nc">.visible-lg-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-lg-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">xl-up</span> <span class="p">{</span> <span class="nc">.visible-xl-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-xl-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">hd-up</span> <span class="p">{</span> <span class="nc">.visible-hd-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-hd-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">fhd-up</span> <span class="p">{</span> <span class="nc">.visible-fhd-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-fhd-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">qhd-up</span> <span class="p">{</span> <span class="nc">.visible-qhd-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-qhd-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">uhd-up</span> <span class="p">{</span> <span class="nc">.visible-uhd-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-uhd-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="m">4</span><span class="n">k-up</span> <span class="p">{</span> <span class="nc">.visible-4k-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-4k-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="m">5</span><span class="n">k-up</span> <span class="p">{</span> <span class="nc">.visible-5k-up</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-5k-up</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">xs-down</span> <span class="p">{</span> <span class="nc">.visible-xs-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-xs-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">sm-down</span> <span class="p">{</span> <span class="nc">.visible-sm-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-sm-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">md-down</span> <span class="p">{</span> <span class="nc">.visible-md-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-md-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">lg-down</span> <span class="p">{</span> <span class="nc">.visible-lg-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-lg-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">xl-down</span> <span class="p">{</span> <span class="nc">.visible-xl-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-xl-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">hd-down</span> <span class="p">{</span> <span class="nc">.visible-hd-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-hd-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">fhd-down</span> <span class="p">{</span> <span class="nc">.visible-fhd-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-fhd-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">qhd-down</span> <span class="p">{</span> <span class="nc">.visible-qhd-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-qhd-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">uhd-down</span> <span class="p">{</span> <span class="nc">.visible-uhd-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-uhd-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="m">4</span><span class="n">k-down</span> <span class="p">{</span> <span class="nc">.visible-4k-down</span> <span class="p">{</span><span class="err">.dp-block;</span><span class="p">}</span> <span class="nc">.hidden-4k-down</span> <span class="p">{</span><span class="err">.dp-none;</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<div class="divider"></div>
+
+<h1 id="row와-column">Row와 Column</h1>
+
+<p>Bootstrap에서 쓰는 Row와 Column 방식을 추가한다. <a href="http://getbootstrap.com/customize/">Bootstrap Customize</a>에서 Grid System만 체크한 뒤 페이지 최하단의 Compile and Download를 누르면 <a href="http://getbootstrap.com/css/#grid">Bootstrap의 Grid</a>의 내용만 있는 CSS 파일을 다운로드할 수 있다. css/bootstrap.css 파일을 열어 301줄부터 마지막까지를 복사해 프로젝트의 Less 파일에 붙여넣었다.</p>
+
+<p>많은 내용을 좀 더 쉽게 보면서 편집하기 위해 <a href="http://csscompressor.com/">레벨을 High로 해서 압축</a>했다. 그리고 코드량을 줄이기 위해 공통된 부분은 .col()로 빼냈다. 마지막으로 유사한 방식으로 고해상도 부분을 추가했는데, 고해상도에서 offset은 잘 쓰지 않아서 제외했다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@col-padding</span> <span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
+<span class="nc">.col</span><span class="o">()</span><span class="p">{</span><span class="nl">position</span><span class="p">:</span><span class="nb">relative</span><span class="p">;</span><span class="nl">min-height</span><span class="p">:</span><span class="m">1px</span><span class="p">;</span><span class="nl">padding-right</span><span class="p">:</span><span class="err">@</span><span class="n">col-padding</span><span class="p">;</span><span class="nl">padding-left</span><span class="p">:</span><span class="err">@</span><span class="n">col-padding</span><span class="p">;</span><span class="nl">float</span><span class="p">:</span><span class="nb">left</span><span class="p">;}</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">margin-right</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">padding-left</span><span class="p">:</span> <span class="err">@</span><span class="n">col-padding</span><span class="p">;</span> <span class="nl">padding-right</span><span class="p">:</span> <span class="err">@</span><span class="n">col-padding</span><span class="p">;</span> <span class="err">&amp;::after{</span><span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;}</span><span class="err">}</span>
+<span class="nc">.container-fluid</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">margin-right</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">padding-left</span><span class="p">:</span> <span class="err">@</span><span class="n">col-padding</span><span class="p">;</span> <span class="nl">padding-right</span><span class="p">:</span> <span class="err">@</span><span class="n">col-padding</span><span class="p">;</span> <span class="err">&amp;::after{</span><span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;}</span><span class="err">}</span>
+<span class="nc">.row</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span> <span class="n">-</span><span class="err">@</span><span class="n">col-padding</span><span class="p">;</span> <span class="nl">margin-right</span><span class="p">:</span> <span class="n">-</span><span class="err">@</span><span class="n">col-padding</span><span class="p">;</span> <span class="err">&amp;::after{</span><span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span> <span class="p">}</span><span class="err">}</span>
+<span class="nc">.col-xs-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-xs-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-xs-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-xs-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-xs-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-xs-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-xs-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-xs-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-xs-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-xs-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-xs-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-xs-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="nc">.offset-xs-1</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xs-2</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.offset-xs-3</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.offset-xs-4</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xs-5</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.offset-xs-6</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.offset-xs-7</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xs-8</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.offset-xs-9</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.offset-xs-10</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xs-11</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">sm-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">576px</span><span class="p">}</span>
+<span class="nc">.col-sm-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-sm-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-sm-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-sm-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-sm-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-sm-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-sm-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-sm-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-sm-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-sm-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-sm-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-sm-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="nc">.offset-sm-0</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">0</span><span class="p">}</span>
+<span class="nc">.offset-sm-1</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.offset-sm-2</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.offset-sm-3</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.offset-sm-4</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.offset-sm-5</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.offset-sm-6</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.offset-sm-7</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.offset-sm-8</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.offset-sm-9</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.offset-sm-10</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.offset-sm-11</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">md-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">720px</span><span class="p">}</span>
+<span class="nc">.col-md-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-md-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-md-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-md-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-md-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-md-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-md-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-md-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-md-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-md-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-md-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-md-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="nc">.offset-md-0</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">0</span><span class="p">}</span>
+<span class="nc">.offset-md-1</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.offset-md-2</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.offset-md-3</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.offset-md-4</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.offset-md-5</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.offset-md-6</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.offset-md-7</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.offset-md-8</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.offset-md-9</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.offset-md-10</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.offset-md-11</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">lg-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">940px</span><span class="p">}</span>
+<span class="nc">.col-lg-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-lg-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-lg-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-lg-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-lg-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-lg-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-lg-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-lg-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-lg-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-lg-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-lg-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-lg-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="nc">.offset-lg-0</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">0</span><span class="p">}</span>
+<span class="nc">.offset-lg-1</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.offset-lg-2</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.offset-lg-3</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.offset-lg-4</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.offset-lg-5</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.offset-lg-6</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.offset-lg-7</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.offset-lg-8</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.offset-lg-9</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.offset-lg-10</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.offset-lg-11</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="err">@</span><span class="n">xl-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">1140px</span><span class="p">}</span>
+<span class="nc">.col-xl-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-xl-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-xl-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-xl-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-xl-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-xl-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-xl-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-xl-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-xl-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-xl-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-xl-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-xl-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="nc">.offset-xl-0</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">0</span><span class="p">}</span>
+<span class="nc">.offset-xl-1</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xl-2</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.offset-xl-3</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.offset-xl-4</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xl-5</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.offset-xl-6</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.offset-xl-7</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xl-8</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.offset-xl-9</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.offset-xl-10</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.offset-xl-11</span><span class="p">{</span><span class="nl">margin-left</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">hd-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">1920px</span><span class="p">}</span>
+<span class="nc">.col-hd-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-hd-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-hd-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-hd-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-hd-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-hd-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-hd-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-hd-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-hd-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-hd-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-hd-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-hd-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">fhd-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">2560px</span><span class="p">}</span>
+<span class="nc">.col-fhd-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-fhd-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-fhd-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-fhd-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-fhd-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-fhd-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-fhd-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-fhd-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-fhd-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-fhd-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-fhd-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-fhd-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">qhd-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">3840px</span><span class="p">}</span>
+<span class="nc">.col-qhd-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-qhd-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-qhd-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-qhd-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-qhd-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-qhd-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-qhd-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-qhd-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-qhd-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-qhd-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-qhd-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-qhd-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="err">@</span><span class="n">uhd-up</span> <span class="p">{</span>
+<span class="nc">.container</span><span class="p">{</span><span class="nl">max-width</span><span class="p">:</span><span class="m">3840px</span><span class="p">}</span>
+<span class="nc">.col-uhd-1</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">8.33333%</span><span class="p">}</span>
+<span class="nc">.col-uhd-2</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">16.66667%</span><span class="p">}</span>
+<span class="nc">.col-uhd-3</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">25%</span><span class="p">}</span>
+<span class="nc">.col-uhd-4</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">33.33333%</span><span class="p">}</span>
+<span class="nc">.col-uhd-5</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">41.66667%</span><span class="p">}</span>
+<span class="nc">.col-uhd-6</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">50%</span><span class="p">}</span>
+<span class="nc">.col-uhd-7</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">58.33333%</span><span class="p">}</span>
+<span class="nc">.col-uhd-8</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">66.66667%</span><span class="p">}</span>
+<span class="nc">.col-uhd-9</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">75%</span><span class="p">}</span>
+<span class="nc">.col-uhd-10</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">83.33333%</span><span class="p">}</span>
+<span class="nc">.col-uhd-11</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">91.66667%</span><span class="p">}</span>
+<span class="nc">.col-uhd-12</span><span class="p">{</span><span class="err">.col;</span><span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="divider"></div>
+
+<h2 id="결론">결론</h2>
+
+<ul>
+  <li>내가 참여한 개발 프로젝트에 모두 포함되어 있다.</li>
+  <li>기존에 널리 쓰이는 다른 Grid 체계와 호환된다.</li>
+  <li>많은 기술 중 정답은 작업자가 쓰기 편한 것이다.</li>
+  <li>원하는데 없으면 만들어 쓰자.</li>
+</ul>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>사실 대부분의 UI Framework들은 서로 호환되지 않으므로 같이 쓸 수 없다.&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>일반적인 웹사이트는 정렬과 여백을 적절히 활용하기 때문에 고해상도에 대응하는 CSS에 대한 니즈가 거의 없다. 다만, 아임포트 통계분석처럼 가로 풀사이즈 레이아웃을 쓰는 특수한 상황에서는 필요하다.&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;&#xfe0e;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+</article>
+
+<div class="page-navigation">
+	<a class="home" href="/" title="Back to Homepage">Home</a>
+</div>
+
+		</main>
+
+		<div class="footer">
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
+
+	</body>
+
+</html>

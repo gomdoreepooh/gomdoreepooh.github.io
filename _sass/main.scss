@@ -1,5 +1,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.0/css/SpoqaHanSans-kr.min.css');
 
+$contentwidth : 700px;
+
 body {
   font-family: 'Karla', 'Spoqa Han Sans', sans-serif;
   padding: 20px;
@@ -196,7 +198,7 @@ iframe {
   width: 100%;
 }
 article {
-  max-width: 500px;
+  max-width: $contentwidth;
   margin: 0 auto;
   .title {
     line-height: 1.4em;
@@ -269,7 +271,7 @@ article {
 .page-navigation,
 .footer {
   text-align: center;
-  max-width: 500px;
+  max-width: $contentwidth;
   margin: 0 auto;
   font-size: 0.8rem;
 }
@@ -293,7 +295,7 @@ article {
   }
 }
 section {
-  max-width: 500px;
+  max-width: $contentwidth;
   margin: 0 auto 50px auto;
   ul {
     list-style: none;

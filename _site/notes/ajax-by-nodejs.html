@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>Node.js에서 Ajax로 데이터 통신</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="Node.js에서 Ajax로 데이터 통신" />
+		<meta name="twitter:description" content="URL ROUTING 처리하기">
+		<meta name="description" content="URL ROUTING 처리하기">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
+
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/notes/ajax-by-nodejs">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
+
+	</head>
+
+	<body>
+		
+		<aside class="logo">
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
+
+		<main>
+
+<!-- 콘텐츠 시작 -->
+<article>
+
+<div class="center">
+	<h1>Node.js에서 Ajax로 데이터 통신</h1>
+	<time>2017년 5월 12일</time>
+</div>
+
+<div class="divider"></div>
+
+<h2 id="url-routing-처리하기">URL ROUTING 처리하기</h2>
+
+<p>angularJS와 react에서 JSON 형식의 데이터를 다루는 방법을 익히고 나니 이제 서버와의 데이터 통신 방법이 궁금해졌다. 그래서 Node.js에서 Ajax 방식으로 데이터를 주고받는 방법을 <a href="https://www.inflearn.com/course/node-js-%EC%9B%B9%EA%B0%9C%EB%B0%9C/">Inflearn 강좌</a>로 공부했다.</p>
+
+<h3 id="1-새-프로젝트를-만들고-express를-설치한다">1. 새 프로젝트를 만들고 express를 설치한다.</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir node &amp;&amp; cd node
+npm init
+npm install express —save
+</code></pre>
+</div>
+
+<h3 id="2-appjs-파일을-작성한다">2. app.js 파일을 작성한다.</h3>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"start! express server is running on port 3000"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<h3 id="3-참고로-node는-비동기로-동작한다">3. 참고로 node는 비동기로 동작한다.</h3>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"this line will be at the end"</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"this is line number "</span> <span class="o">+</span> <span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="4-서버는-nodemon으로-실행한다">4. 서버는 nodemon으로 실행한다.</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install nodemon -g
+nodemon app.js
+</code></pre>
+</div>
+
+<h3 id="5-get-방식의-요청을-처리한다">5. GET 방식의 요청을 처리한다.</h3>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"&lt;h1&gt;안녕하세요&lt;/h1&gt;"</span><span class="p">)</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">"/public/main.html"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<h3 id="6-static-디렉토리를-express에-등록한다">6. Static 디렉토리를 express에 등록한다.</h3>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">'public'</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<h3 id="7-formhtml에-폼-양식을-만든다">7. form.html에 폼 양식을 만든다.</h3>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/email_post"</span>  <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+  email : <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="8-bodyparser를-이용해-post-요청을-처리한다">8. bodyParser를 이용해 POST 요청을 처리한다.</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install body-parser -save
+</code></pre>
+</div>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span><span class="na">extended</span><span class="p">:</span><span class="kc">true</span><span class="p">}))</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/email_post'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"welcome! "</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<h2 id="ajax-통신-추가하기">Ajax 통신 추가하기</h2>
+
+<p>위에서 한 FORM 방식이 URL이 바뀐다면, Ajax는 한 페이지 안에서 새로고침 없이 비동기 형태로 데이터를 주고받을 수 있는 방식이다. 폼 화면은 동일하게 활용하고, 아래와 같이 통신부분만 추가한다.</p>
+
+<h3 id="1-ajax-요청을-보낼-버튼을-그린다">1. ajax 요청을 보낼 버튼을 그린다.</h3>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"ajaxsend"</span><span class="nt">&gt;</span>ajaxsend<span class="nt">&lt;/button&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="2-이벤트리스너에-등록한다">2. 이벤트리스너에 등록한다.</h3>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'.ajaxsend'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// 입력값 위치를 찾아 변수에 담고</span>
+    <span class="kd">var</span> <span class="nx">inputdata</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">forms</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+    <span class="c1">// sendAjax 함수를 만들고 URL과 data를 전달</span>
+    <span class="nx">sendAjax</span><span class="p">(</span><span class="s1">'http://127.0.0.1:3000/ajax_send_email'</span><span class="p">,</span> <span class="nx">inputdata</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="3-xmlhttprequest로-데이터를-보내고-받는다">3. XMLHttpRequest로 데이터를 보내고 받는다.</h3>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+<span class="kd">function</span> <span class="nx">sendAjax</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span>
+  
+  <span class="c1">// 입력값을 변수에 담고 문자열 형태로 변환</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'email'</span> <span class="p">:</span> <span class="nx">data</span><span class="p">};</span>
+  <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+
+  <span class="c1">// content-type을 설정하고 데이터 송신</span>
+  <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+  <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+  <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">'Content-type'</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+  <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  
+  <span class="c1">// 데이터 수신이 완료되면 표시</span>
+  <span class="nx">xhr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'load'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="4-appjs에서-ajax-요청을-처리한다">4. app.js에서 Ajax 요청을 처리한다.</h3>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/ajax_send_email'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">responseData</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'result'</span> <span class="p">:</span> <span class="s1">'ok'</span><span class="p">,</span> <span class="s1">'email'</span> <span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">}</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">responseData</span><span class="p">);</span>
+  <span class="c1">// 서버에서는 JSON.stringify 필요없음</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<h3 id="5-데이터-수신-부분을-수정해-결과를-표시한다">5. 데이터 수신 부분을 수정해 결과를 표시한다.</h3>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"result"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">xhr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'load'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// 문자열 형식으로 변환</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+    <span class="c1">// 데이터가 없으면 return 반환</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">result</span> <span class="o">!==</span> <span class="s1">'ok'</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="c1">// 데이터가 있으면 결과값 표시</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".serult"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="전체-코드">전체 코드</h2>
+
+</article>
+<!-- 콘텐츠 종료 -->
+
+		<div class="page-navigation">
+			<a class="home" href="/" title="Back to Homepage">Home</a>
+			<span> &middot; </span>
+		    <a class="prev" href="/notes/svg-by-react" title="PREV: React에서 SVG 사용하기">&gt;&gt;</a>
+		</div>
+
+		</main>
+
+		<div class="footer">
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
+
+	</body>
+
+</html>

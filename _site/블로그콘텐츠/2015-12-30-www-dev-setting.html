@@ -7,11 +7,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<title>About</title>
+		<title>www 개발환경 설정 (Laravel)</title>
 		
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@gomdoreepooh" />
-		<meta name="twitter:title" content="About" />
+		<meta name="twitter:title" content="www 개발환경 설정 (Laravel)" />
 		<meta name="twitter:description" content="곰돌이푸의 대모험">
 		<meta name="description" content="곰돌이푸의 대모험">
 		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
@@ -20,7 +20,7 @@
 		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
 		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 		<link rel="stylesheet" href="/assets/core.css">
-		<link rel="canonical" href="/about">
+		<link rel="canonical" href="/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%BD%98%ED%85%90%EC%B8%A0/2015-12-30-www-dev-setting">
 		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
 
 	</head>
@@ -38,21 +38,51 @@
 
 <article>
 
-	<h1 class="title">About</h1>
+	<h1 class="title">www 개발환경 설정 (Laravel)</h1>
 
 	<div class="divider"></div>
 
-	<p>안녕하세요! 곰돌이푸의 기술 블로그입니다.</p>
+	<h3 id="프로젝트-복사">프로젝트 복사</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://namusiot@bitbucket.org/siotiamport/iamport-www-new.git
+</code></pre>
+</div>
 
-<p>웹서비스를 만드는 과정과 기술을 좋아합니다. 그동안 서비스 기획과 디자인을 주로 했는데, 코드로 디자인하다보니 어느새 퍼블리싱과 프론트엔드 개발을 하게 되고, 점차 자바스크립트와 리액트와 노드로 관심사를 넓혀가고 있습니다. 풀스택 개발하는 디자이너를 목표로 하고 공부하고 있습니다.</p>
+<h3 id="mamp-설치">MAMP 설치</h3>
+<p><img src="https://www.mamp.info/en/images/screenshots/en_mamp-start.jpg" alt="MAMP" /></p>
 
-<p>배우고 시도한 내용을 잊어버리지 않고 다음에 복습할 때에도 기억해내기 위한 목적으로 블로그를 하고 있습니다. 그래서 가이드 같은 친절한 설명보다는 제가 이해하는 기준에 맞춰 정리하는 글이 대다수가 될 것 같습니다. 적어도 매 주 한 편씩, 검색으로 찾을 수 있는 내용보다는 새로운 시도와 깨달음을 위주로 글을 올릴 예정입니다.</p>
+<h3 id="프로젝트-폴더에-env-파일-추가">프로젝트 폴더에 .env 파일 추가</h3>
 
-<p>블로그에 댓글 기능은 없습니다. 이 블로그를 보고 저에게 궁금한 점이 있는 분은 제게 <a href="mailto:gomdoreepooh@gmail.com">이메일</a>을 보내주시면 확인 후 답장 드리겠습니다. 참고로 곰돌이푸는 배가 푸만큼 나왔다는 이유로 와이프님이 하사하신 별명인데 저도 좋아라합니다. 배가 나오는 만큼 개발력도 늘어갈 것 같습니다. ㅎㅎ</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>APP_ENV=local
+APP_KEY=base64:xWE3pYrTlmoEE8fqzLr8OZR8CElZQozgdNlYhSUnF84=
+APP_DEBUG=true
+APP_LOG_LEVEL=debug
+APP_URL=http://localhost
 
-<p>감사합니다. ENJOY!</p>
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=iamport
+DB_USERNAME=root
+DB_PASSWORD=root
 
-<p><img src="/assets/img/about-recent-condition/2017-05-19.JPG" alt="about-recent-condition" /></p>
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+</code></pre>
+</div>
+
+<p>DB 연동 시 <a href="https://docs.google.com/document/d/1LdF2NSJrOlW7-JgBXQF4Hi-dzcTjHa8EwFRUy0Z8iiM/edit">구글문서</a> 참조</p>
 
 
 </article>

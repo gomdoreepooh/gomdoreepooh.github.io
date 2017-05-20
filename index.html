@@ -5,6 +5,10 @@ layout: default
 <section>
 
 	{% for post in site.posts %}
+
+	{{ post.category }}
+	{{ post.ppp }}
+
 		{% unless post.next %}
 			<h3>{{ post.date | date: '%Y' }} &#172;</h3>
 		{% else %}
