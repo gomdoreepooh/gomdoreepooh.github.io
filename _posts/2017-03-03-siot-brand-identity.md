@@ -1,7 +1,6 @@
 ---
-title: 시옷 & 아임포트 Brand Identity
-category: 디자인
-page : 1/9
+title: 시옷 Brand Identity
+updated : 2017-03-03 19:20
 ---
 
 ## 시옷 로고
