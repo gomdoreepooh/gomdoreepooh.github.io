@@ -1,13 +1,13 @@
 ---
-title: Custom Grid 만들기
+title: Less로 Grid 커스터마이징하기
 updated : 2017-03-17 19:20
 ---
 
 ## 개요
 
-UI Framework 중에서 [Bootstrap](http://getbootstrap.com/)과 [Semantic UI](https://semantic-ui.com/)를 주로 사용한다. 둘 모두 비슷한 요소들을 갖추고 있기 때문에 하나만 쓰면 충분하다.[^1] [아임포트 홈페이지](http://iamport.kr/)에는 Bootstrap을 썼고, [통계분석](http://analytics.iamport.kr/)에는 Semantic UI를 쓴다. 통계분석에서 Semantic UI를 쓰는 건 [React에서 더 쉽게](http://react.semantic-ui.com/introduction) 쓸 수 있기 때문이다.
+UI Framework 중에서 [Bootstrap](http://getbootstrap.com/)과 [Semantic UI](https://semantic-ui.com/)를 주로 사용한다. 둘 모두 비슷한 요소들을 갖추고 있기 때문에 하나만 쓰는 것이 좋다.[^1] [아임포트 홈페이지](http://iamport.kr/)에는 Bootstrap을 썼고, [통계분석](http://analytics.iamport.kr/)에는 Semantic UI를 썼다. 통계분석에서 Semantic UI를 쓴 건 [React에서 더 쉽게](http://react.semantic-ui.com/introduction) 쓸 수 있기 때문이다.
 
-하지만 반응형 웹을 위한 Grid를 그릴 때에는 Semantic UI보다 Bootstrap의 방식이 더 손에 익었기 때문에 그 부분만 떼서 프로젝트에 이식했다. 그리고 4K, 5K와 같은 고해상도 모니터들이 출시되는 추세를 반영해 이에 대응하는 코드도 추가했다.[^2] 마지막으로 코드를 간결하게 쓸 수 있도록 Less로 정리했다.
+하지만 반응형 웹을 위한 Grid를 그릴 때에는 Semantic UI보다 Bootstrap의 방식이 작업하기에 익숙하였기 때문에 그 부분만 떼서 프로젝트에 추가했다. 그리고 4K, 5K와 같은 고해상도 모니터들이 출시되는 추세를 반영해 이에 대응하는 코드도 추가했다.[^2] 마지막으로 코드를 간결하게 쓸 수 있도록 Less의 변수로 정리했다.
 
 <div class="divider"></div>
 
@@ -39,7 +39,7 @@ Less에서 해상도의 Break Point를 아래와 같이 지정한다. [Bootstrap
 @4k-max 	: (@5k-min - 1);
 ```
 
-위에서 정한 범위에 맞춰 아래와 같이 변수를 만든다. -down과 -up은 [Responsive Utilites](https://v4-alpha.getbootstrap.com/layout/responsive-utilities/)에 나오는 개념인데, 써보니 유용해서 같이 추가했다.
+위에서 정한 범위에 맞춰 아래와 같이 변수를 만든다. -down과 -up은 [Bootstrap Responsive Utilites](https://v4-alpha.getbootstrap.com/layout/responsive-utilities/)에 나오는 개념인데, 써보니 유용해서 같이 추가했다.
 
 ```css
 @xs: 	~'only screen and (max-width: @{xs-max})';
@@ -91,9 +91,7 @@ Less에서 해상도의 Break Point를 아래와 같이 지정한다. [Bootstrap
 
 ## 마크업
 
-만드는 김에 Bootstrap에서 편하게 썼던 클래스들을 몇개 추가해보자. 아래와 같이 만들면 다른 요소에 쉽게 포함시킬 수 있고 마크업에서도 쉽게 사용할 수 있다.
-
-참고로 만약 CSS파일의 용량을 줄이기 위해 Less 안에서는 쓰되, 변환된 CSS에는 제외하고 싶을 경우에는 클래스이름 뒤에 함수처럼 ()를 붙이면 된다. [[자세히]](https://opentutorials.org/course/277/1751)
+만드는 김에 Bootstrap에서 편하게 썼던 클래스들을 몇개 추가했다. 아래와 같이 만들면 다른 요소에 쉽게 포함시킬 수 있고 마크업에서도 쉽게 사용할 수 있다. 참고로 만약 CSS파일의 용량을 줄이기 위해 Less 안에서는 쓰되, 변환된 CSS에는 제외하고 싶을 경우에는 클래스이름 뒤에 함수처럼 ()를 붙이면 된다. [[자세히]](https://opentutorials.org/course/277/1751)
 
 ```css
 .text-center {text-align: center}
@@ -366,14 +364,16 @@ Bootstrap에서 쓰는 Row와 Column 방식을 추가한다. [Bootstrap Customiz
 }
 ```
 
-<div class="divider"></div>
-
 ## 결론
 
-* 내가 참여한 개발 프로젝트에 모두 포함되어 있다.
-* 기존에 널리 쓰이는 다른 Grid 체계와 호환된다.
-* 많은 기술 중 정답은 작업자가 쓰기 편한 것이다.
-* 원하는데 없으면 만들어 쓰자.
+* 기존에 널리 쓰이는 Grid 체계와 호환된다.
+* Less에서 media query 부분을 간편하게 쓸 수 있다.
+* sm-down, md-up 같은 축약 형태를 사용할 수 있다.
+* 4k, 5k와 같은 고해상도의 CSS도 제어할 수 있다.
+* Bootstrap v4에 추가된 push, pull은 손에 익지 않아 제외했다.
+* hidden-, visible-도 사용빈도가 적어 제외했다.
+
+<div class="divider"></div>
 
 [^1]: 사실 대부분의 UI Framework들은 서로 호환되지 않으므로 같이 쓸 수 없다.
 [^2]: 일반적인 웹사이트는 정렬과 여백을 적절히 활용하기 때문에 고해상도에 대응하는 CSS에 대한 니즈가 거의 없다. 다만, 아임포트 통계분석처럼 가로 풀사이즈 레이아웃을 쓰는 특수한 상황에서는 필요하다.

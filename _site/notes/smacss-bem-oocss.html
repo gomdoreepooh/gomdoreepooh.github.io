@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<title>CSS 방법론 (SMASS, BEM, OOCSS)</title>
+		
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@gomdoreepooh" />
+		<meta name="twitter:title" content="CSS 방법론 (SMASS, BEM, OOCSS)" />
+		<meta name="twitter:description" content="알아보기">
+		<meta name="description" content="알아보기">
+		<meta name="google-site-verification" content="cpjZVZYYF6Hbdb_m_39EkhmyxVJ_zzAwF4_SByjP-mY">
+
+		<link rel="icon" href="/assets/favicon.png">
+		<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+		<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/core.css">
+		<link rel="canonical" href="/notes/smacss-bem-oocss">
+		<link rel="alternate" type="application/atom+xml" title="곰돌이푸" href="/feed.xml" />
+
+	</head>
+
+	<body>
+		
+		<aside class="logo">
+			<a href="/">
+				<img src="http://www.gravatar.com/avatar/1600227bded806e85eb3885c72d427a9.png?s=80" class="gravatar">
+			</a>
+			<span class="logo-prompt">홈으로 돌아가기</span>
+		</aside>
+
+		<main>
+
+<!-- 콘텐츠 시작 -->
+<article>
+
+<div class="center">
+	<h1>CSS 방법론 (SMASS, BEM, OOCSS)</h1>
+	<time>2017년 4월 17일</time>
+</div>
+
+<div class="divider"></div>
+
+<h2 id="알아보기">알아보기</h2>
+
+<p>CSS의 역할이 커지면서 CSS를 보다 효율적으로 작성하는 여러가지 아이디어들이 생겼다. SMACSS, BEM, OOCSS 등이 있는데, 개인적으로 각자의 특징을 한 단어로 표현하자면, SMACSS=5형제, BEM=네이밍, OOCSS=재사용이라고 생각한다.</p>
+
+<p>아래 4가지는 여러 CSS 방법론들이 공통적으로 지향하는 목표이며, 이를 위해 대부분 CSS 선택자로 아이디와 타입(태그)을 사용하지 말 것을 권장한다. 아이디는 재사용이 불가능한 요소이고, 태그에 스타일을 매기면 마크업이 수정될 경우 스타일도 다시 손봐야 하기 때문이다(의존적).</p>
+
+<ol>
+  <li>쉬운 유지보수</li>
+  <li>코드의 재사용</li>
+  <li>확장 가능</li>
+  <li>직관적인 네이밍</li>
+</ol>
+
+<h3 id="smacss">SMACSS</h3>
+<ul>
+  <li>작성할 CSS를 비슷한 5가지 종류로 나눈다. Base, Layout, Module, State, Theme</li>
+  <li>Base는 기본 스타일이다. Reset, Variable 등을 포함한다. !important를 쓰지 않는다.</li>
+  <li>Layout은 suffix "l-"을 붙인다. Layout은 ID 선택자를 사용해도 된다.</li>
+  <li>Module은 table, icon, box 같이 재사용성이 높은 요소를 정의한다.</li>
+  <li>State는 상태를 나타난다. active나 disable 등이며 suffix "is-"나 "s-"를 붙인다.</li>
+  <li>Theme는 전반적인 Look and feel을 정의하며 suffix "theme-"를 붙인다.</li>
+</ul>
+
+<h3 id="bem">BEM</h3>
+<ul>
+  <li>화면에 보여질 블록(block)을 기준으로 첫번째 순서의 네이밍을 작성한다.</li>
+  <li>그 다음에 블록 안의 요소(elements)들을 "__"으로 연결해서 네이밍을 작성한다.</li>
+  <li>그 다음에 수식어(모양이나 상태)를 "–"으로 연결한 뒤 네이밍을 작성한다.</li>
+  <li>수식어는 boolean이나 key-value 형태로 넣을 수 있다. (-disable, -color-red)</li>
+  <li>예를 들면 .header__logo 또는 .form__button–disabled과 같은 식이다.</li>
+  <li>클래스명이 용도와 형태를 의미하므로 직관적인 것이 장점, 길고 복잡해지는 것이 단점이다.</li>
+</ul>
+
+<h3 id="oocss">OOCSS</h3>
+<ul>
+  <li>BEM이 역할-요소-상태 순으로 정리한다면, OOCSS는 구조와 스타일을 분리한다.</li>
+  <li>중복되는 디자인 요소를 따로 빼내어 반복적으로 사용한다. (공통 스타일 추상화)</li>
+  <li>컨테이너와 콘텐츠를 분리하고 위치에 의존적인 스타일을 정의하지 않는다.</li>
+  <li>코드 재사용성이 높아져 코드량이 줄고 성능이 향상되며 유지보수성도 높아지는 장점이 있다.</li>
+  <li>반면, 마크업에서 동일한 클래스를 여러 곳에 사용하므로 코드가 지저분해지는 단점이 있다.</li>
+  <li>이 단점을 보완한 것이 OOSass로, 마크업의 복잡함을 프리프로세서 내에서 대신 처리한다.</li>
+</ul>
+
+<div class="divider"></div>
+
+<h2 id="응용">응용</h2>
+<p>아래는 마크업과 퍼블리싱을 하면서 개인적으로 CSS를 정리해오던 방법으로, CSS 방법론을 모를 때부터 써왔기 때문에 어느 한 가지에 꼭 들어맞지는 않는다. 위의 이해를 바탕으로 설명하자면 OOSass가 메인이지만 SMACSS의 장점도 일부 섞여있다. 참고로 Less를 주로 사용하기 때문에 엄밀히 말하면 OOLess라고 부르는 게 맞을 것 같다.</p>
+
+<h3 id="1-자주-사용하는-속성은-utility-class로-만든다">1. 자주 사용하는 속성은 utility class로 만든다.</h3>
+<p>SMACSS의 Base처럼 공통적으로 적용할 속성을 작성한다. 아래처럼 utility class를 만들면 타이핑하는 코드량을 줄이면서 손쉽게 css 속성을 재사용할 수 있다. 클래스 형태로 두면 less를 css로 변환해도 그대로 남아있기 때문에 마크업에서도 동일하게 사용할 수 있다. 반대로 Less에서는 사용하되 변환 이후의 css에는 남겨놓고 싶지 않을 경우 뒤에 ()를 붙여 함수형태로 바꿔 사용한다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span> <span class="nt">li</span> <span class="nt">tag</span>
+<span class="nt">ul</span><span class="o">,</span><span class="nt">ol</span> <span class="p">{</span><span class="nl">margin</span><span class="p">:</span><span class="m">0</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span><span class="m">0</span><span class="p">}</span>
+<span class="nt">ul</span> <span class="nt">li</span> <span class="p">{</span><span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;}</span>
+
+<span class="o">//</span> <span class="nt">font-weight</span>
+<span class="nc">._100</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">100</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._200</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">200</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._300</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">300</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._400</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">400</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._500</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">500</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._600</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">600</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._700</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">700</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._800</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">800</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">._900</span> <span class="p">{</span><span class="nl">font-weight</span><span class="p">:</span> <span class="m">900</span><span class="cp">!important</span><span class="p">;}</span>
+
+<span class="o">//</span> <span class="nt">letter-spacing</span>
+<span class="nc">.ls0</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">0</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.ls-xs</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">-0.03rem</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.ls-sm</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">-0.05rem</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.ls-md</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">-0.07rem</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.ls-lg</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">-0.09rem</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.ls-xl</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">-0.11rem</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.ls</span><span class="o">(</span><span class="k">@value</span><span class="p">)</span> <span class="p">{</span><span class="nl">letter-spacing</span><span class="p">:</span> <span class="n">-</span><span class="err">@</span><span class="n">value</span><span class="cp">!important</span><span class="p">;}</span>
+
+<span class="o">//</span> <span class="nt">opacity</span>
+<span class="nc">.opacity</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.6</span><span class="p">;}</span>
+<span class="nc">.opacity0</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span><span class="p">;}</span>
+<span class="nc">.opacity1</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.1</span><span class="p">;}</span>
+<span class="nc">.opacity2</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.2</span><span class="p">;}</span>
+<span class="nc">.opacity3</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.3</span><span class="p">;}</span>
+<span class="nc">.opacity4</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.4</span><span class="p">;}</span>
+<span class="nc">.opacity5</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.5</span><span class="p">;}</span>
+<span class="nc">.opacity6</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.6</span><span class="p">;}</span>
+<span class="nc">.opacity7</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.7</span><span class="p">;}</span>
+<span class="nc">.opacity8</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.8</span><span class="p">;}</span>
+<span class="nc">.opacity9</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">0.9</span><span class="p">;}</span>
+<span class="nc">.opacity-full</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span><span class="p">;}</span>
+<span class="nc">.opacity</span><span class="o">(</span><span class="k">@value</span><span class="p">)</span> <span class="p">{</span><span class="nl">opacity</span><span class="p">:</span> <span class="err">@</span><span class="n">value</span><span class="p">;}</span>
+
+<span class="o">//</span> <span class="nt">text-option</span>
+<span class="nc">.italic</span> <span class="p">{</span><span class="nl">font-style</span><span class="p">:</span> <span class="nb">italic</span><span class="p">;}</span>
+<span class="nc">.uppercase</span> <span class="p">{</span><span class="nl">text-transform</span><span class="p">:</span> <span class="nb">uppercase</span><span class="p">;}</span>
+<span class="nc">.capitalize</span> <span class="p">{</span><span class="nl">text-transform</span><span class="p">:</span> <span class="nb">capitalize</span><span class="p">;}</span>
+<span class="nc">.lowercase</span> <span class="p">{</span><span class="nl">text-transform</span><span class="p">:</span> <span class="nb">lowercase</span><span class="p">;}</span>
+<span class="nc">.pointer</span> <span class="p">{</span><span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;}</span>
+<span class="nc">.break</span> <span class="p">{</span><span class="nl">word-break</span><span class="p">:</span><span class="n">break-all</span><span class="p">;}</span>
+</code></pre>
+</div>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.title</span> <span class="p">{</span>
+	<span class="err">._600;</span>
+	<span class="err">.ls-sm;</span>
+	<span class="err">.opacity5;</span>
+	<span class="err">.capitalize;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="2-프리프로세서의-문법과-기능을-활용한다">2. 프리프로세서의 문법과 기능을 활용한다.</h3>
+
+<p>Less의 연산, 변수, 함수 등의 기능을 활용하면 코드량을 더 줄이고, 복잡한 효과도 쉽게 추가할 수 있다. 예를 들면 .gradation-x(#FF0000,#FFFF00)와 같이 함수로 만든 클래스를 이용하면 해당 영역에 빨간색부터 노란색까지 가로방향으로 진행하는 그라데이션 배경색을 추가할 수 있다. .transition(opacity)처럼 전환효과를 줄 개별 속성을 선택하게 만들 수도 있다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span> <span class="nt">Gradation</span>
+<span class="nc">.gradation</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="err">@</span><span class="n">start</span><span class="p">;</span> <span class="c">/* 그레디언트가 지원되지 않는 경우의 색상(fallback color) */</span>
+    <span class="nl">background-image</span><span class="p">:</span> <span class="n">-webkit-linear-gradient</span><span class="p">(</span><span class="nb">top</span><span class="p">,</span> <span class="err">@</span><span class="n">start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">);</span>
+    <span class="nl">background-image</span><span class="p">:</span>    <span class="n">-moz-linear-gradient</span><span class="p">(</span><span class="nb">top</span><span class="p">,</span> <span class="err">@</span><span class="n">start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">);</span> <span class="c">/* Fx 3.6 부터 Fx 15 까지 처리 */</span>
+    <span class="nl">background-image</span><span class="p">:</span>     <span class="n">-ms-linear-gradient</span><span class="p">(</span><span class="nb">top</span><span class="p">,</span> <span class="err">@</span><span class="n">start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">);</span> <span class="c">/* IE 10 Platform Previews, Consumer Preview */</span>
+    <span class="nl">background-image</span><span class="p">:</span>      <span class="n">-o-linear-gradient</span><span class="p">(</span><span class="nb">top</span><span class="p">,</span> <span class="err">@</span><span class="n">start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">);</span> <span class="c">/* Opera 11.1 부터 12.0 까지 처리 */</span> 
+    <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="nl">align-items</span><span class="p">:</span><span class="nb">center</span><span class="p">;</span>
+    <span class="nl">flex-wrap</span><span class="p">:</span><span class="n">wrap</span><span class="p">;</span>
+    <span class="nl">padding</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.gradation-y</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nc">.gradation</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">);</span>
+    <span class="nt">background-image</span><span class="o">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">bottom</span><span class="o">,</span> <span class="k">@start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.gradation-x</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nc">.gradation</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">);</span>
+    <span class="nt">background-image</span><span class="o">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">right</span><span class="o">,</span> <span class="k">@start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.gradation-rt</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nc">.gradation</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">);</span>
+    <span class="nt">background-image</span><span class="o">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">right</span> <span class="nt">top</span><span class="o">,</span> <span class="k">@start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">)</span>
+<span class="err">}</span>
+<span class="p">.</span><span class="n">gradation-rb</span><span class="p">(</span><span class="err">@</span><span class="n">start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nc">.gradation</span><span class="o">(</span><span class="k">@start</span><span class="p">,</span><span class="err">@</span><span class="n">end</span><span class="p">);</span>
+    <span class="nt">background-image</span><span class="o">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">right</span> <span class="nt">bottom</span><span class="o">,</span> <span class="k">@start</span><span class="p">,</span> <span class="err">@</span><span class="n">end</span><span class="p">)</span>
+<span class="err">}</span>
+
+<span class="p">//</span> <span class="n">transition</span>
+<span class="p">.</span><span class="n">transition</span> <span class="p">{</span><span class="nl">-webkit-transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.5s</span><span class="p">,</span> <span class="n">-webkit-transform</span> <span class="m">0.5s</span><span class="p">;</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.5s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.5s</span><span class="p">;}</span>
+<span class="nc">.transition-slow</span> <span class="p">{</span><span class="nl">-webkit-transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.8s</span><span class="p">,</span> <span class="n">-webkit-transform</span> <span class="m">0.8s</span><span class="p">;</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.8s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.8s</span><span class="p">;}</span>
+<span class="nc">.transition-fast</span> <span class="p">{</span><span class="nl">-webkit-transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.2s</span><span class="p">,</span> <span class="n">-webkit-transform</span> <span class="m">0.2s</span><span class="p">;</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.2s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.2s</span><span class="p">;}</span>
+<span class="nc">.transition</span><span class="o">(</span><span class="k">@option</span><span class="p">)</span> <span class="p">{</span><span class="nl">-webkit-transition</span><span class="p">:</span> <span class="err">@</span><span class="n">option</span> <span class="m">0.5s</span><span class="p">,</span> <span class="n">-webkit-transform</span> <span class="m">0.5s</span><span class="p">;</span> <span class="nl">transition</span><span class="p">:</span> <span class="err">@</span><span class="n">option</span> <span class="m">0.5s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.5s</span><span class="p">;}</span>
+<span class="nc">.transition-slow</span><span class="o">(</span><span class="k">@option</span><span class="p">)</span> <span class="p">{</span><span class="nl">-webkit-transition</span><span class="p">:</span> <span class="err">@</span><span class="n">option</span> <span class="m">0.8s</span><span class="p">,</span> <span class="n">-webkit-transform</span> <span class="m">0.8s</span><span class="p">;</span> <span class="nl">transition</span><span class="p">:</span> <span class="err">@</span><span class="n">option</span> <span class="m">0.8s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.8s</span><span class="p">;}</span>
+<span class="nc">.transition-fast</span><span class="o">(</span><span class="k">@option</span><span class="p">)</span> <span class="p">{</span><span class="nl">-webkit-transition</span><span class="p">:</span> <span class="err">@</span><span class="n">option</span> <span class="m">0.2s</span><span class="p">,</span> <span class="n">-webkit-transform</span> <span class="m">0.2s</span><span class="p">;</span> <span class="nl">transition</span><span class="p">:</span> <span class="err">@</span><span class="n">option</span> <span class="m">0.2s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.2s</span><span class="p">;}</span>
+</code></pre>
+</div>
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.layer</span> <span class="p">{</span>
+	<span class="err">.gradation-x(#FF0000,</span> <span class="err">#FFFF00);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="3-state는-is-active처럼-suffix를-활용한다">3. State는 .is-active처럼 suffix를 활용한다.</h3>
+<p>클래스는 CSS 외에도 javascript에서도 사용한다. 특히 상태를 표현할 때 주로 쓰는데, 요소에 클래스를 toggle하여 보여주거나 숨기는 기능을 구현하면서 .is-active 클래스명을 쓰는 것을 예로 들 수 있다. suffix를 생략한 채 .active로 사용하기도 한다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span> <span class="nt">element</span> <span class="nt">control</span>
+<span class="nc">.dp-block</span> <span class="p">{</span><span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.dp-none</span> <span class="p">{</span><span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="cp">!important</span><span class="p">;}</span>
+<span class="nc">.hidden</span> <span class="p">{</span><span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;}</span>
+<span class="nc">.visible</span> <span class="p">{</span><span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;}</span>
+</code></pre>
+</div>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.layer</span> <span class="p">{</span>
+	<span class="err">.dp-none;</span>
+<span class="p">}</span>
+<span class="nc">.layer.is-active</span> <span class="p">{</span>
+	<span class="err">.dp-block;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="4-공통된-스타일은-별도의-클래스로-만들고-재사용한다">4. 공통된 스타일은 별도의 클래스로 만들고 재사용한다.</h3>
+<p>OOCSS를 설명할 때 대개 facebook과 twitter 버튼을 만드는 예제를 사용한다. 거기에 HTML 마크업이 늘어나는 것을 명시적으로 보여주기 위해 .btn-block 클래스를 추가했다. 적용할 공통 속성이 늘어나면 그만큼 HTML 마크업도 늘어난다. 그래서 실제로는 그 다음에서 설명하는 OOSass의 방식을 사용한다.</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.btn</span> <span class="p">{</span>
+	<span class="nl">border</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+	<span class="nl">outline</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+	<span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+	<span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+	<span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+	<span class="nl">border-radius</span><span class="p">:</span> <span class="m">3px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.btn-block</span> <span class="p">{</span>
+	<span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+	<span class="nl">line-height</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.facebook</span> <span class="p">{</span>
+	<span class="nl">background-color</span><span class="p">:</span> <span class="m">#3b5998</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.twitter</span> <span class="p">{</span>
+	<span class="nl">background-color</span><span class="p">:</span> <span class="m">#00aced</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"facebook btn btn-block"</span><span class="nt">&gt;</span>페이스북로 공유<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"twitter btn btn-block"</span><span class="nt">&gt;</span>트위터로 공유<span class="nt">&lt;/button&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="5-html에서는-클래스명을-하나로-주고-less에서-중복-클래스명을-처리한다">5. HTML에서는 클래스명을 하나로 주고, Less에서 중복 클래스명을 처리한다.</h3>
+<p>Less의 중첩 규칙을 이용해 Less 안에서 중복 클래스를 묶어 하나의 클래스명을 만들고 HTML 마크업 요소에 연결한다. (중첩 규칙은 Sass도 동일하게 사용할 수 있다) 쉬운 유지보수, 코드의 재사용과 확장, 직관적인 네이밍 모두 가능한 가장 효율적인 방법이라고 생각한다.</p>
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.btn</span> <span class="p">{</span>
+	<span class="nl">border</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+	<span class="nl">outline</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+	<span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+	<span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+	<span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+	<span class="nl">border-radius</span><span class="p">:</span> <span class="m">3px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.btn-block</span> <span class="p">{</span>
+	<span class="err">.btn;</span>
+	<span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+	<span class="nl">line-height</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.facebook</span> <span class="p">{</span>
+	<span class="nl">background-color</span><span class="p">:</span> <span class="m">#3b5998</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.twitter</span> <span class="p">{</span>
+	<span class="nl">background-color</span><span class="p">:</span> <span class="m">#00aced</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.fb-btn</span> <span class="p">{</span>
+	<span class="err">.facebook;</span>
+	<span class="err">.btn-block;</span>
+<span class="p">}</span>
+<span class="nc">.tw-btn</span> <span class="p">{</span>
+	<span class="err">.twitter;</span>
+	<span class="err">.btn-block;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"fb-btn"</span><span class="nt">&gt;</span>페이스북로 공유<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"tw-btn"</span><span class="nt">&gt;</span>트위터로 공유<span class="nt">&lt;/button&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="주의사항">주의사항</h2>
+<ol>
+  <li>여러 사람이 협업할 때는 utility class를 작성하는 기준(일종의 <a href="https://spoqa.github.io/2012/08/03/about-python-coding-convention.html">코딩 컨벤션</a>)을 통일해야 한다.</li>
+  <li>다른 UI framework와 같이 사용할 경우 클래스명이나 효과가 중첩되지 않도록 작성해야 한다.</li>
+  <li>간단한 속성을 주는 것에도 중첩 규칙을 사용하면 오히려 작업량이 늘어난다. 상황에 따라 적절하게 복합선택자(하위, 자식, 형제 등)를 사용해야 한다.</li>
+  <li>React와 같이 구성요소를 컴포넌트로 만들 경우 컴포넌트 단위로 스타일을 분리하는데, 그럴 경우 utility class가 포함된 less 파일은 최상위에 두고 import로 불러와 사용한다. 빌드 과정에서 프리프로세서를 컴파일하기 때문에 릴리즈 버전은 영향을 받지 않지만, 개발 환경에서는 약간의 성능저하가 생길 수 있다.</li>
+</ol>
+<div class="divider"></div>
+
+<h2 id="참고">참고</h2>
+<ul>
+  <li>스키머(schemr), <a href="https://medium.com/witinweb/css-%EB%B0%A9%EB%B2%95%EB%A1%A0-1-bem-block-element-modifier-1c03034e65a1">CSS 방법론 (1) — BEM (Block Element Modifier)</a></li>
+  <li>스키머(schemr), <a href="https://medium.com/witinweb/css-%EB%B0%A9%EB%B2%95%EB%A1%A0-2-oocss-object-oriented-css-4064e1119354">CSS 방법론 (2) — OOCSS(Object Oriented CSS)</a></li>
+  <li>NTS UIT BLOG, <a href="http://wit.nts-corp.com/2015/04/16/3538">[CSS방법론] SMACSS, BEM, OOCSS</a></li>
+</ul>
+
+</article>
+<!-- 콘텐츠 종료 -->
+
+		<div class="page-navigation">
+			<a class="next" href="/notes/ajax-by-nodejs" title="NEXT: Node.js에서 Ajax로 데이터 통신">&lt;&lt;</a>
+			<span> &middot; </span>
+			<a class="home" href="/" title="Back to Homepage">Home</a>
+			<span> &middot; </span>
+		    <a class="prev" href="/notes/less-custom-grid" title="PREV: Less로 Grid 커스터마이징하기">&gt;&gt;</a>
+		</div>
+
+		</main>
+
+		<div class="footer">
+			<span class="block">Made with &hearts; using <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/heiswayi/the-plain" title="The Plain theme by Heiswayi Nrird">The Plain</a> &middot; &lt;/&gt; on <a href="https://github.com/gomdoreepooh" title="Hosted on GitHub">GitHub</a></span>
+			<span class="block">&copy; 2017 Gomdoreepooh</span>
+		</div>
+
+	</body>
+
+</html>
