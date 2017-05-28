@@ -2,12 +2,15 @@
 layout: default
 ---
 
+<script>
+var ppp = "123123"
+document.write(ppp)
+</script>
+
 <section>
 
 	{% for post in site.posts %}
-
-	{{ post.category }}
-	{{ post.ppp }}
+	
 
 		{% unless post.next %}
 			<h3>{{ post.date | date: '%Y' }} &#172;</h3>
