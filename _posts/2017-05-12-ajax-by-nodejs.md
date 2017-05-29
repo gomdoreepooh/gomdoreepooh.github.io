@@ -147,4 +147,3 @@ app.post('/ajax_send_email', function(req, res){
 </script>
 ```
 
-## 전체 코드
