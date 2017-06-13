@@ -37,17 +37,18 @@ sudo ./mysql
 ```
 sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
 ```
-위 명령어는 실행된 상태로 유지되므로 새로운 터미널 창을 열어서 MySQL에 접속한다. 이제 비밀번호를 묻지 않고 바로 접속이 된다. (예이!)
+위 명령어는 실행된 상태로 유지되므로 새로운 터미널 창을 열어서 MySQL에 접속한다. 이제 비밀번호를 묻지 않고 바로 접속이 된다. (예이!) 만약 접속이 잘 안 된다면 방금 전 실행한 명령어가 완전히 실행되었는지(=바람개비가 다 사라졌는지) 확인한다.
 ```
 /usr/local/mysql/bin/mysql -uroot
 ```
 접속한 뒤에는 아래와 같이 비밀번호를 root로 변경한다. password=('root')에 root 대신 원하는 비밀번호를 입력해도 된다. (참고로 5.7 버전 이전에는 set password=password('원하는 비밀번호')였는데 컬럼명이 바꼈다.[^1] 굳이 바뀐 컬럼명을 직접 보고자 한다면 use mysql;을 하고 show full columnes from user;를 치면 된다.)
 ```
+mysql> use mysql; 
 mysql> update user set authentication_string=password('root') where user='root';
 ```
 마지막으로 변경사항을 적용하기 위해 flush previleges 명령어를 실행한다.
 ```
-mysql> flush previleges;
+mysql> flush privileges;
 ```
 
 ### 5. MySQL 접속하기
