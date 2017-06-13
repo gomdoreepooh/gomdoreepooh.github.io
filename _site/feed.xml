@@ -16,7 +16,7 @@
     <uri>https://twitter.com/gomdoreepooh</uri>
   </author>
 
-  <updated>2017-06-13T13:02:09+09:00</updated>
+  <updated>2017-06-13T13:02:48+09:00</updated>
   <id>/</id>
   <generator version="3.4.3">Jekyll</generator>
 
@@ -75,7 +75,7 @@ sudo ./mysql
 mysql&gt; update user set authentication_string=password('root') where user='root';
 </code></pre>
 </div>
-<p>마지막으로 변경사항을 적용하기 위해 flush previleges 명령어를 실행한다.</p>
+<p>마지막으로 변경사항을 적용하기 위해 flush privileges 명령어를 실행한다.</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>mysql&gt; flush privileges;
 </code></pre>
 </div>

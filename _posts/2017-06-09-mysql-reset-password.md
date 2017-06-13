@@ -46,7 +46,7 @@ sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
 mysql> use mysql; 
 mysql> update user set authentication_string=password('root') where user='root';
 ```
-마지막으로 변경사항을 적용하기 위해 flush previleges 명령어를 실행한다.
+마지막으로 변경사항을 적용하기 위해 flush privileges 명령어를 실행한다.
 ```
 mysql> flush privileges;
 ```
